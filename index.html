@@ -128,6 +128,14 @@
                     <p class="text-[10px] sm:text-xs text-sky-300/80 truncate">⚡ Échanges, Lignes, Négos, Casino & Direct Live</p>
                 </div>
             </div>
+            <div class="flex items-center gap-2 shrink-0 ml-auto sm:ml-0">
+                <button onclick="ouvrirModalChat()" class="relative bg-zinc-950/90 hover:bg-zinc-900 text-sky-400 font-bold px-2.5 sm:px-3.5 py-2 rounded-xl border border-sky-500/50 text-xs flex items-center gap-1.5 shadow-lg transition">
+                    <i class="fa-solid fa-comments"></i> Chat DG <span class="bg-sky-500 text-black text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center -top-1 -right-1 absolute animate-bounce">2</span>
+                </button>
+                <button onclick="ouvrirModalNotifs()" class="relative bg-zinc-950/90 hover:bg-zinc-900 text-purple-400 font-bold px-2.5 sm:px-3.5 py-2 rounded-xl border border-purple-500/50 text-xs flex items-center gap-1.5 shadow-lg transition">
+                    <i class="fa-solid fa-bell"></i> Alertes <span id="badge-alertes-count" class="bg-purple-500 text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center -top-1 -right-1 absolute">3</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -156,6 +164,11 @@
                         </h2>
                         <p class="text-xs text-sky-300/70">⚡ Visualisez, comparez et modifiez tous les joueurs en un seul endroit[cite: 3].</p>
                     </div>
+                    <div>
+                        <button onclick="basculerCadenasPresident()" id="btn-cadenas-president" class="bg-zinc-900 text-purple-300 px-3 py-1.5 rounded-xl border border-purple-500/40 text-xs font-bold flex items-center gap-1.5 shadow">
+                            <i class="fa-solid fa-lock text-purple-400"></i> Cadenas Fermé (Sécurisé)
+                        </button>
+                    </div>
                 </div>
                 <div class="bg-black/90 p-4 rounded-2xl border border-sky-500/40 shadow-2xl overflow-x-auto">
                     <table class="w-full text-left text-xs whitespace-nowrap">
@@ -168,6 +181,9 @@
                                 <th class="p-3 text-center">Tir</th>
                                 <th class="p-3 text-center">Passe</th>
                                 <th class="p-3 text-center">Physique</th>
+                                <th class="p-3 text-center">Poignet</th>
+                                <th class="p-3 text-center">Frappe</th>
+                                <th class="p-3 text-center">Échec</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-zinc-900 font-bold" id="table-hub-corps"></tbody>
@@ -189,7 +205,7 @@
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                     <div class="lg:col-span-4 bg-black/80 p-4 rounded-2xl border border-sky-500/40 space-y-4">
-                        <h3 class="font-black text-sky-400 text-xs uppercase"><i class="fa-solid fa-shield-halved"></i> Vos Joueurs (Armada Bois-Brillant)</h3>
+                        <h3 class="font-black text-sky-400 text-xs uppercase"><i class="fa-solid fa-shield-halved"></i> Vos Joueurs</h3>
                         <div class="space-y-3.5" id="inventaire-local-joueurs"></div>
                     </div>
                     <div class="lg:col-span-4 plateau-transfert-glow card-center-highlight p-4.5 rounded-2xl space-y-4 shadow-2xl">
@@ -198,7 +214,7 @@
                         <div class="box-recu-glow p-3 rounded-xl min-h-[120px]" id="plateau-recu"><span class="text-[11px] text-purple-300/70 block text-center py-8">Vous Recevez</span></div>
                     </div>
                     <div class="lg:col-span-4 bg-black/80 p-4 rounded-2xl border border-purple-500/40 space-y-4">
-                        <h3 class="font-black text-purple-400 text-xs uppercase"><i class="fa-solid fa-user-shield"></i> Bathurst & Halifax</h3>
+                        <h3 class="font-black text-purple-400 text-xs uppercase"><i class="fa-solid fa-user-shield"></i> Équipe Adverse</h3>
                         <div class="space-y-3.5" id="inventaire-adverse-joueurs"></div>
                     </div>
                 </div>
@@ -209,7 +225,7 @@
         <div id="page-vestiaire" class="hidden space-y-6">
             <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
                 <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-shirt"></i> Gestion des Trios & Alignements[cite: 3]</h2>
-                <p class="text-xs text-sky-300/70">Ajustez vos trios pour optimiser la chimie de l'équipe.</p>
+                <span id="cote-globale-alignement" class="text-lg font-black text-emerald-400">91.4 / 100</span>
             </div>
         </div>
 
@@ -218,8 +234,8 @@
             <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
                 <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-hockey-puck"></i> Direct Live & Simulation[cite: 3]</h2>
                 <div class="bg-black p-6 rounded-2xl border-2 border-sky-500/50 shadow-2xl text-center">
-                    <div class="text-4xl font-black neon-title">4 - 2</div>
-                    <span class="text-xs text-emerald-400">Match en direct - Séquence active</span>
+                    <div class="text-4xl font-black neon-title"><span id="score-q">4</span> - <span id="score-s">2</span></div>
+                    <span class="text-xs text-emerald-400">3e Période (14:22)</span>
                 </div>
             </div>
         </div>
@@ -240,33 +256,64 @@
                     <span id="solde-ep-boutique" class="text-2xl font-black neon-title">4,500 CC</span>
                 </div>
             </div>
+            <div class="bg-black/90 p-6 rounded-3xl border border-sky-500/40 text-center space-y-6 max-w-xl mx-auto">
+                <div class="roue-synthwave-container my-4">
+                    <div id="roue-visuel-casino" class="roue-synthwave-inner relative flex items-center justify-center">
+                        <div class="w-20 h-20 rounded-full bg-black border-4 border-sky-500 flex flex-col items-center justify-center text-center z-20">
+                            <span id="roue-statut-casino" class="text-[10px] font-black text-sky-100">SPIN 🎲</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="lancerRoueCasino()" class="bg-gradient-to-r from-sky-500 to-purple-600 text-white font-black px-6 py-3.5 rounded-2xl text-xs w-full shadow">TOURNER LA ROULETTE LAZER ! 🎰</button>
+            </div>
         </div>
 
     </main>
 
     <script>
+        let soldeEP = 4500;
+        let modeEditionPresidentActif = false;
+
         const tousLesJoueursLigue = [
-            { id: 'q1', nom: 'Jean Béliveau', equipe: 'Armada Bois-Brillant', pos: 'C', moy: 92, patin: 92, tir: 95, passe: 98, physique: 88 },
-            { id: 'q2', nom: 'Guy Lafleur', equipe: 'Bathurst', pos: 'AD', moy: 87, patin: 97, tir: 96, passe: 93, physique: 82 },
-            { id: 'q3', nom: 'Serge Savard', equipe: 'Halifax', pos: 'DD', moy: 88, patin: 84, tir: 82, passe: 88, physique: 92 }
+            { id: 'q1', nom: 'Jean Béliveau', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'C', moy: 92, patin: 92, tir: 95, passe: 98, physique: 88, poignet: 96, frappe: 92, echec: 85 },
+            { id: 'q2', nom: 'Guy Lafleur', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'AD', moy: 87, patin: 97, tir: 96, passe: 93, physique: 82, poignet: 98, frappe: 95, echec: 78 },
+            { id: 'q3', nom: 'Serge Savard', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'DD', moy: 88, patin: 84, tir: 82, passe: 88, physique: 92, poignet: 80, frappe: 94, echec: 96 },
+            { id: 's1', nom: 'Mats Sundin', equipe: 'Viking de Stockholm', equipeKey: 'stockholm', pos: 'C', moy: 90, patin: 88, tir: 91, passe: 93, physique: 93, poignet: 91, frappe: 89, echec: 90 }
         ];
+
+        function basculerCadenasPresident() {
+            modeEditionPresidentActif = !modeEditionPresidentActif;
+            remplirHubCentral();
+            const btn = document.getElementById('btn-cadenas-president');
+            if (btn) {
+                btn.className = modeEditionPresidentActif ? "bg-emerald-600 text-white px-3 py-1.5 rounded-xl border border-emerald-400 text-xs font-bold flex items-center gap-1.5 shadow" : "bg-zinc-900 text-purple-300 px-3 py-1.5 rounded-xl border border-purple-500/40 text-xs font-bold flex items-center gap-1.5 shadow";
+                btn.innerHTML = modeEditionPresidentActif ? <i class="fa-solid fa-lock-open"></i> Cadenas Ouvert (Édition) : <i class="fa-solid fa-lock text-purple-400"></i> Cadenas Fermé (Sécurisé);
+            }
+        }
 
         function remplirHubCentral() {
             let html = '';
             tousLesJoueursLigue.forEach(j => {
+                const patinInput = modeEditionPresidentActif ? <input type="number" value="${j.patin}" class="w-12 bg-zinc-950 border border-emerald-500 text-center text-emerald-300 rounded font-bold text-xs py-0.5"> : j.patin;
+                const tirInput = modeEditionPresidentActif ? <input type="number" value="${j.tir}" class="w-12 bg-zinc-950 border border-emerald-500 text-center text-emerald-300 rounded font-bold text-xs py-0.5"> : j.tir;
+                
                 html += `
                     <tr class="hover:bg-zinc-950 transition">
                         <td class="p-3"><span class="font-bold text-sky-100 block">${j.nom}</span><span class="text-[10px] text-sky-400">${j.equipe}</span></td>
                         <td class="p-3 text-center"><span class="bg-black px-2 py-0.5 rounded text-sky-300">${j.pos}</span></td>
                         <td class="p-3 text-center text-emerald-400 font-black">${j.moy}</td>
-                        <td class="p-3 text-center">${j.patin}</td>
-                        <td class="p-3 text-center">${j.tir}</td>
+                        <td class="p-3 text-center">${patinInput}</td>
+                        <td class="p-3 text-center">${tirInput}</td>
                         <td class="p-3 text-center">${j.passe}</td>
                         <td class="p-3 text-center">${j.physique}</td>
+                        <td class="p-3 text-center text-purple-300">${j.poignet}</td>
+                        <td class="p-3 text-center text-purple-300">${j.frappe}</td>
+                        <td class="p-3 text-center text-purple-300">${j.echec}</td>
                     </tr>
                 `;
             });
-            document.getElementById('table-hub-corps').innerHTML = html;
+            const tbody = document.getElementById('table-hub-corps');
+            if (tbody) tbody.innerHTML = html;
         }
 
         function changerOnglet(onglet) {
@@ -281,6 +328,13 @@
             if (targetPage) targetPage.classList.remove('hidden');
             if (targetBtn) targetBtn.className = "active-module px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow";
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function lancerRoueCasino() {
+            soldeEP += 150;
+            const el = document.getElementById('solde-ep-boutique');
+            if (el) el.innerText = soldeEP.toLocaleString() + " CC";
+            alert("🎰 Rotation réussie ! +150 Crédits Cyber (CC) ajoutés à votre solde.");
         }
 
         window.onload = () => {
