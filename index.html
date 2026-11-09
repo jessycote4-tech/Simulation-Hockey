@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LDC WebSim Pro 2026 - Édition Dark Cyber Noir</title>
+    <title>LDC WebSim Pro 2026 - Édition Dark Cyber Noir Intégrale</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* THÈME DARK CYBER : FOND NOIR + GRIS ARDOISE AU CENTRE */
         .avatar-glow-pale {
             background: #000000;
             border-radius: 50%;
@@ -98,6 +99,15 @@
             background: conic-gradient(#ef4444 0deg 45deg, #10b981 45deg 90deg, #8b5cf6 90deg 135deg, #0284c7 135deg 180deg, #f59e0b 180deg 225deg, #dc2626 225deg 270deg, #38bdf8 270deg 315deg, #be123c 315deg 360deg);
             box-shadow: inset 0 0 25px rgba(0,0,0,0.95); transition: transform 5s cubic-bezier(0.12, 0.98, 0.15, 1);
         }
+
+        @keyframes popupResult {
+            0% { transform: scale(0.7); opacity: 0; }
+            50% { transform: scale(1.08); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .resultat-spin-anime {
+            animation: popupResult 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
     </style>
 </head>
 <body class="text-sky-100 min-h-screen font-sans pb-20">
@@ -109,7 +119,7 @@
         </span>
         <div class="overflow-hidden w-full relative">
             <div class="ticker-text text-sky-200/90 space-x-8">
-                <span>🎰 <strong>ÉDITION DARK CYBER !</strong> • Fond noir profond • Bleu Cyan & Violet Rétro • Affichage géant des résultats • Pièges redoutables 💣🔥</span>
+                <span>🎰 <strong>ÉDITION DARK CYBER INTÉGRALE !</strong> • Fond noir profond • Bleu Cyan & Violet Rétro • 11 Onglets • Bureau des Transactions • Casino Lazer • Édition Hub Central 💣🔥</span>
             </div>
         </div>
     </div>
@@ -139,7 +149,7 @@
         </div>
     </header>
 
-    <!-- BARRE DE NAVIGATION -->
+    <!-- BARRE DE NAVIGATION (11 ONGLETS COMPLETS) -->
     <nav class="bg-slate-900/95 border-b border-sky-500/40 py-2.5 px-3 sm:px-4 sticky top-[65px] sm:top-[73px] z-30 backdrop-blur-md shadow-xl overflow-x-auto" style="background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);">
         <div class="max-w-7xl mx-auto flex gap-2 min-w-max">
             <button onclick="changerOnglet('hub')" id="btn-hub" class="active-module px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-table-cells text-sky-400"></i> 1. Hub Central</button>
@@ -147,14 +157,19 @@
             <button onclick="changerOnglet('vestiaire')" id="btn-vestiaire" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-shirt text-purple-400"></i> 3. Trios</button>
             <button onclick="changerOnglet('matchs')" id="btn-matchs" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-hockey-puck text-sky-400"></i> 4. Direct Live</button>
             <button onclick="changerOnglet('direction')" id="btn-direction" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-file-contract text-purple-400"></i> 5. Négos</button>
-            <button onclick="changerOnglet('boutique')" id="btn-boutique" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-dice text-purple-400"></i> 6. Casino Cyber</button>
+            <button onclick="changerOnglet('strategie')" id="btn-strategie" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-chess-board text-sky-400"></i> 6. Tactique</button>
+            <button onclick="changerOnglet('stats')" id="btn-stats" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-chart-bar text-sky-400"></i> 7. Stats</button>
+            <button onclick="changerOnglet('arena')" id="btn-arena" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-building text-emerald-400"></i> 8. Amphithéâtre</button>
+            <button onclick="changerOnglet('boutique')" id="btn-boutique" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-dice text-purple-400"></i> 9. Casino Cyber</button>
+            <button onclick="changerOnglet('presse')" id="btn-presse" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-newspaper text-sky-400"></i> 10. Médias</button>
+            <button onclick="changerOnglet('loterie')" id="btn-loterie" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-trophy text-amber-400"></i> 11. Loterie Draft</button>
         </div>
     </nav>
 
     <!-- CONTENU PRINCIPAL -->
     <main class="max-w-7xl mx-auto p-3 sm:p-6 space-y-6">
 
-        <!-- ONGLET 1 : HUB CENTRAL -->
+        <!-- ONGLET 1 : HUB CENTRAL & ATTRIBUTS -->
         <div id="page-hub" class="space-y-6">
             <div class="neon-card p-4 sm:p-6 rounded-2xl shadow-2xl space-y-6">
                 <div class="flex flex-wrap justify-between items-center gap-4 border-b border-sky-900/50 pb-4">
@@ -162,14 +177,28 @@
                         <h2 class="text-xl sm:text-2xl font-black neon-title flex items-center gap-2">
                             <i class="fa-solid fa-table-cells text-sky-400"></i> Hub Central & Vision Globale des Attributs
                         </h2>
-                        <p class="text-xs text-sky-300/70">⚡ Visualisez, comparez et modifiez tous les joueurs en un seul endroit[cite: 3].</p>
+                        <p class="text-xs text-sky-300/70">⚡ Visualisez, comparez et modifiez (sécurisé) tous les joueurs de la ligue en un seul endroit.</p>
                     </div>
-                    <div>
+                    <div class="flex flex-wrap items-center gap-3">
                         <button onclick="basculerCadenasPresident()" id="btn-cadenas-president" class="bg-zinc-900 text-purple-300 px-3 py-1.5 rounded-xl border border-purple-500/40 text-xs font-bold flex items-center gap-1.5 shadow">
                             <i class="fa-solid fa-lock text-purple-400"></i> Cadenas Fermé (Sécurisé)
                         </button>
+                        <select id="hub-filtre-equipe" onchange="filtrerHubCentral()" class="bg-slate-900 border-2 border-sky-400 text-sky-100 font-bold p-2 rounded-xl text-xs outline-none cursor-pointer">
+                            <option value="tous">🌐 TOUTES LES ÉQUIPES</option>
+                            <option value="quebec">👑 Nordiques de Québec</option>
+                            <option value="stockholm">🛡️ Viking de Stockholm</option>
+                            <option value="montreal">🔵 Canadiens de Montréal</option>
+                        </select>
+                        <select id="hub-filtre-pos" onchange="filtrerHubCentral()" class="bg-slate-900 border-2 border-purple-400 text-sky-100 font-bold p-2 rounded-xl text-xs outline-none cursor-pointer">
+                            <option value="tous">📋 Toutes les Positions</option>
+                            <option value="C">⚔️ Centres (C)</option>
+                            <option value="ailiers">⚡ Ailiers (AG / AD)</option>
+                            <option value="D">🛡️ Défenseurs (D)</option>
+                            <option value="G">🥅 Gardiens (G)</option>
+                        </select>
                     </div>
                 </div>
+
                 <div class="bg-black/90 p-4 rounded-2xl border border-sky-500/40 shadow-2xl overflow-x-auto">
                     <table class="w-full text-left text-xs whitespace-nowrap">
                         <thead class="bg-zinc-950 text-sky-300 uppercase text-[10px] border-b border-sky-900/60">
@@ -184,6 +213,7 @@
                                 <th class="p-3 text-center">Poignet</th>
                                 <th class="p-3 text-center">Frappe</th>
                                 <th class="p-3 text-center">Échec</th>
+                                <th class="p-3">Lien DG 🔗</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-zinc-900 font-bold" id="table-hub-corps"></tbody>
@@ -198,59 +228,145 @@
                 <div class="flex flex-wrap justify-between items-center gap-4 border-b border-sky-900/50 pb-4">
                     <div>
                         <h2 class="text-xl sm:text-2xl font-black neon-title flex items-center gap-2">
-                            <i class="fa-solid fa-right-left text-sky-400"></i> Bureau des Transactions 2026[cite: 3]
+                            <i class="fa-solid fa-right-left text-sky-400"></i> Bureau des Transactions 2026
                         </h2>
-                        <p class="text-xs text-sky-300/70">🔁 Cliquez sur les joueurs pour alimenter la zone centrale[cite: 3].</p>
+                        <p class="text-xs text-sky-300/70">🔁 Glissez-déposez ou cliquez sur les joueurs pour alimenter la zone centrale.</p>
                     </div>
+                    <select id="partenaire-change" onchange="changerPartenaire()" class="bg-slate-900 border-2 border-sky-400 text-sky-100 font-bold p-2 rounded-xl text-xs outline-none cursor-pointer">
+                        <option value="sto">👑 Viking de Stockholm (DG Anders)</option>
+                        <option value="mtl">🔵 Canadiens de Montréal (DG Hughes)</option>
+                    </select>
                 </div>
+
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                     <div class="lg:col-span-4 bg-black/80 p-4 rounded-2xl border border-sky-500/40 space-y-4">
-                        <h3 class="font-black text-sky-400 text-xs uppercase"><i class="fa-solid fa-shield-halved"></i> Vos Joueurs</h3>
-                        <div class="space-y-3.5" id="inventaire-local-joueurs"></div>
+                        <h3 class="font-black text-sky-400 text-xs uppercase"><i class="fa-solid fa-shield-halved"></i> Vos Joueurs (Québec)</h3>
+                        <div class="space-y-3.5 max-h-[460px] overflow-y-auto" id="inventaire-local-joueurs"></div>
                     </div>
                     <div class="lg:col-span-4 plateau-transfert-glow card-center-highlight p-4.5 rounded-2xl space-y-4 shadow-2xl">
                         <h3 class="font-black neon-title text-sm uppercase text-center"><i class="fa-solid fa-arrow-right-arrow-left"></i> ZONE D'ÉCHANGE CENTRALE</h3>
                         <div class="box-donne-glow p-3 rounded-xl min-h-[120px]" id="plateau-donne"><span class="text-[11px] text-sky-300/70 block text-center py-8">Vous Donnez</span></div>
                         <div class="box-recu-glow p-3 rounded-xl min-h-[120px]" id="plateau-recu"><span class="text-[11px] text-purple-300/70 block text-center py-8">Vous Recevez</span></div>
+                        <button onclick="soumettreOffre()" class="bg-gradient-to-r from-sky-500 to-purple-600 text-white font-black py-3 rounded-xl text-xs w-full shadow">SOUMETTRE LA TRANSACTION</button>
+                        <button onclick="viderPlateau()" class="bg-zinc-950 text-sky-200 font-bold py-2 rounded-xl text-[11px] w-full border border-zinc-800">Vider le Plateau</button>
                     </div>
                     <div class="lg:col-span-4 bg-black/80 p-4 rounded-2xl border border-purple-500/40 space-y-4">
-                        <h3 class="font-black text-purple-400 text-xs uppercase"><i class="fa-solid fa-user-shield"></i> Équipe Adverse</h3>
-                        <div class="space-y-3.5" id="inventaire-adverse-joueurs"></div>
+                        <h3 class="font-black text-purple-400 text-xs uppercase" id="titre-col-adverse"><i class="fa-solid fa-user-shield"></i> Stockholm</h3>
+                        <div class="space-y-3.5 max-h-[460px] overflow-y-auto" id="inventaire-adverse-joueurs"></div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-sky-500/30">
+                    <h3 class="text-base font-black neon-title uppercase tracking-wider">💰 Masse Salariale & Plafond (83.5M $)</h3>
+                    <div class="bg-black p-4 rounded-2xl border border-zinc-900 shadow-xl overflow-x-auto mt-3">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-zinc-950 text-sky-300 uppercase text-[10px]">
+                                <tr><th class="p-3">Équipe</th><th class="p-3 text-right">Masse Actuelle</th><th class="p-3 text-right">Post-Transaction</th><th class="p-3 text-right">Espace</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-900 font-bold">
+                                <tr><td class="p-3 text-sky-400">Nordiques de Québec</td><td class="p-3 text-right">74,500,000 $</td><td class="p-3 text-right" id="masse-apres-local">74,500,000 $</td><td class="p-3 text-right text-emerald-400">+9,000,000 $</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ONGLET 3 : TRIOS -->
+        <!-- ONGLET 3 : TRIOS & VESTIAIRE -->
         <div id="page-vestiaire" class="hidden space-y-6">
             <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
-                <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-shirt"></i> Gestion des Trios & Alignements[cite: 3]</h2>
-                <span id="cote-globale-alignement" class="text-lg font-black text-emerald-400">91.4 / 100</span>
+                <div class="flex justify-between items-center border-b border-sky-900/50 pb-4">
+                    <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-shirt"></i> Gestion des 4 Trios & Duos</h2>
+                    <span id="cote-globale-alignement" class="text-lg font-black text-emerald-400">91.4 / 100</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-black p-4 rounded-2xl border border-sky-500/50 space-y-3">
+                        <span class="font-black text-xs text-sky-400 uppercase">🔥 TRIO #1 (Offensif)</span>
+                        <div class="grid grid-cols-3 gap-2 text-xs">
+                            <select id="t1-ag" onchange="calculerCoteAlignement()" class="bg-zinc-950 text-sky-100 p-2 rounded-xl"><option>Alexis Lafrenière</option></select>
+                            <select id="t1-c" onchange="calculerCoteAlignement()" class="bg-zinc-950 text-sky-100 p-2 rounded-xl"><option selected>Jean Béliveau</option></select>
+                            <select id="t1-ad" onchange="calculerCoteAlignement()" class="bg-zinc-950 text-sky-100 p-2 rounded-xl"><option selected>Guy Lafleur</option></select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- ONGLET 4 : DIRECT LIVE -->
         <div id="page-matchs" class="hidden space-y-6">
             <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
-                <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-hockey-puck"></i> Direct Live & Simulation[cite: 3]</h2>
-                <div class="bg-black p-6 rounded-2xl border-2 border-sky-500/50 shadow-2xl text-center">
-                    <div class="text-4xl font-black neon-title"><span id="score-q">4</span> - <span id="score-s">2</span></div>
-                    <span class="text-xs text-emerald-400">3e Période (14:22)</span>
+                <div class="flex justify-between items-center border-b border-sky-900/50 pb-4">
+                    <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-hockey-puck"></i> Direct Live & Simulation</h2>
+                    <button onclick="simulerActionLive()" class="bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-black px-4 py-2 rounded-xl text-xs shadow">Simuler Séquence</button>
                 </div>
+                <div class="bg-black p-6 rounded-2xl border-2 border-sky-500/50 shadow-2xl space-y-6 relative overflow-hidden live-pulse">
+                    <div class="anim-puck"></div>
+                    <div class="flex justify-between items-center relative z-10">
+                        <div><h3>Nordiques de Québec</h3><span class="text-xs">Tirs : <strong id="tirs-quebec">28</strong></span></div>
+                        <div class="text-center bg-zinc-950 px-8 py-4 rounded-2xl border border-sky-500/40">
+                            <div class="text-4xl font-black neon-title"><span id="score-q">4</span> - <span id="score-s">2</span></div>
+                            <span class="text-[10px] text-emerald-400">3e Période (14:22)</span>
+                        </div>
+                        <div><h3>Viking de Stockholm</h3><span class="text-xs">Tirs : <strong id="tirs-stockholm">22</strong></span></div>
+                    </div>
+                </div>
+                <div class="space-y-2" id="fil-actions-live"></div>
             </div>
         </div>
 
         <!-- ONGLET 5 : NÉGOS -->
         <div id="page-direction" class="hidden space-y-6">
             <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
-                <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-file-contract"></i> Centre de Négociation & Contrats[cite: 3]</h2>
+                <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-file-contract"></i> Centre de Négociation & Contrats</h2>
+                <div class="space-y-4" id="liste-negos-contrats"></div>
             </div>
         </div>
 
-        <!-- ONGLET 6 : CASINO CYBER -->
+        <!-- ONGLET 6 : TACTIQUE -->
+        <div id="page-strategie" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
+                <h2 class="text-2xl font-black text-sky-400"><i class="fa-solid fa-chess-board"></i> Bureau Tactique & Style</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div onclick="choisirTactique('pression')" id="tac-pression" class="bg-black p-4 rounded-2xl border-2 border-sky-500 cursor-pointer space-y-2">
+                        <h3 class="font-bold text-sky-100 text-sm">⚡ Pression Intense</h3>
+                        <p class="text-[11px] text-zinc-400">+10% chances de marquer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 7 : STATS -->
+        <div id="page-stats" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
+                <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-chart-bar"></i> Tableau des Pointeurs</h2>
+                <div class="bg-black p-4 rounded-2xl border border-sky-500/30 overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-zinc-950 text-sky-300 uppercase text-[10px]">
+                            <tr><th class="p-3">Joueur</th><th class="p-3">Équipe</th><th class="p-3 text-center">PTS</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-zinc-900 font-bold">
+                            <tr><td class="p-3 text-sky-100">Jean Béliveau</td><td class="p-3 text-sky-400">Nordiques</td><td class="p-3 text-center text-emerald-400 font-black">36</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 8 : AMPHITHÉÂTRE -->
+        <div id="page-arena" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
+                <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-building text-emerald-400"></i> Amphithéâtre & Finances</h2>
+                <div class="bg-black p-5 rounded-2xl border border-emerald-500/40 space-y-4">
+                    <label class="block text-xs text-sky-200">Prix du billet : <strong id="prix-billet-val" class="text-sky-400">45 $</strong></label>
+                    <input type="range" min="20" max="100" value="45" oninput="changerPrixBillet(this.value)" class="w-full accent-emerald-500">
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 9 : CASINO CYBER -->
         <div id="page-boutique" class="hidden space-y-6">
             <div class="bg-gradient-to-r from-slate-900 via-purple-950 to-indigo-950 p-6 rounded-3xl border-2 border-sky-400 flex justify-between items-center">
-                <h2 class="text-3xl font-black neon-title">Casino Dark Cyber & Boutique[cite: 3]</h2>
+                <h2 class="text-3xl font-black neon-title">Casino Dark Cyber & Boutique</h2>
                 <div class="bg-black/90 border-2 border-sky-400 p-4 rounded-2xl text-center">
                     <span class="text-[10px] text-sky-300 block uppercase font-black">SOLDE DU DG</span>
                     <span id="solde-ep-boutique" class="text-2xl font-black neon-title">4,500 CC</span>
@@ -268,17 +384,53 @@
             </div>
         </div>
 
+        <!-- ONGLET 10 : MÉDIAS -->
+        <div id="page-presse" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl">
+                <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-newspaper"></i> La Gazette Officielle LDC</h2>
+                <p class="text-xs text-sky-300/70 mt-2">Actualités et rapports de la ligue.</p>
+            </div>
+        </div>
+
+        <!-- ONGLET 11 : LOTERIE DRAFT -->
+        <div id="page-loterie" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl text-center space-y-6">
+                <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-trophy text-amber-400"></i> Loterie du Repêchage 2027</h2>
+                <div id="loto-gagnant-nom" class="text-2xl font-black text-white">Prêt à lancer la loterie !</div>
+                <button onclick="lancerLoterieDraft()" class="bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black px-8 py-4 rounded-2xl text-sm shadow">LANCER LA LOTERIE</button>
+            </div>
+        </div>
+
     </main>
+
+    <!-- MODAL CHAT -->
+    <div id="modal-chat" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="neon-card border border-sky-500/50 w-full max-w-lg rounded-2xl p-5 space-y-4">
+            <h3 class="font-black text-sky-300 text-sm">Chat DG Inter-ligue</h3>
+            <div class="space-y-3 max-h-[300px] overflow-y-auto text-xs" id="chat-box">
+                <div class="bg-zinc-950 p-3 rounded-xl border border-sky-500/30 text-sky-200">👑 DG Anders : Prêt pour la transaction ?</div>
+            </div>
+            <button onclick="fermerModalChat()" class="bg-zinc-900 text-sky-300 px-4 py-2 rounded-xl text-xs font-bold w-full">Fermer</button>
+        </div>
+    </div>
+
+    <!-- MODAL NOTIFS -->
+    <div id="modal-notifs" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="neon-card border border-purple-500/50 w-full max-w-md rounded-2xl p-5 space-y-4">
+            <h3 class="font-black text-purple-200 text-sm">Centre d'Alertes</h3>
+            <button onclick="fermerModalNotifs()" class="bg-zinc-900 text-purple-300 px-4 py-2 rounded-xl text-xs font-bold w-full">Fermer</button>
+        </div>
+    </div>
 
     <script>
         let soldeEP = 4500;
         let modeEditionPresidentActif = false;
 
         const tousLesJoueursLigue = [
-            { id: 'q1', nom: 'Jean Béliveau', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'C', moy: 92, patin: 92, tir: 95, passe: 98, physique: 88, poignet: 96, frappe: 92, echec: 85 },
-            { id: 'q2', nom: 'Guy Lafleur', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'AD', moy: 87, patin: 97, tir: 96, passe: 93, physique: 82, poignet: 98, frappe: 95, echec: 78 },
-            { id: 'q3', nom: 'Serge Savard', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'DD', moy: 88, patin: 84, tir: 82, passe: 88, physique: 92, poignet: 80, frappe: 94, echec: 96 },
-            { id: 's1', nom: 'Mats Sundin', equipe: 'Viking de Stockholm', equipeKey: 'stockholm', pos: 'C', moy: 90, patin: 88, tir: 91, passe: 93, physique: 93, poignet: 91, frappe: 89, echec: 90 }
+            { id: 'q1', nom: 'Jean Béliveau', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'C', moy: 92, patin: 92, tir: 95, passe: 98, physique: 88, poignet: 96, frappe: 92, echec: 85, lien: '' },
+            { id: 'q2', nom: 'Guy Lafleur', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'AD', moy: 87, patin: 97, tir: 96, passe: 93, physique: 82, poignet: 98, frappe: 95, echec: 78, lien: '' },
+            { id: 'q3', nom: 'Serge Savard', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'DD', moy: 88, patin: 84, tir: 82, passe: 88, physique: 92, poignet: 80, frappe: 94, echec: 96, lien: '' },
+            { id: 's1', nom: 'Mats Sundin', equipe: 'Viking de Stockholm', equipeKey: 'stockholm', pos: 'C', moy: 90, patin: 88, tir: 91, passe: 93, physique: 93, poignet: 91, frappe: 89, echec: 90, lien: '' }
         ];
 
         function basculerCadenasPresident() {
@@ -309,6 +461,7 @@
                         <td class="p-3 text-center text-purple-300">${j.poignet}</td>
                         <td class="p-3 text-center text-purple-300">${j.frappe}</td>
                         <td class="p-3 text-center text-purple-300">${j.echec}</td>
+                        <td class="p-3"><input type="text" value="${j.lien}" placeholder="Lien..." class="bg-zinc-950 border border-sky-500/40 text-sky-100 px-2 py-1 rounded text-xs w-32 outline-none"></td>
                     </tr>
                 `;
             });
@@ -317,7 +470,7 @@
         }
 
         function changerOnglet(onglet) {
-            ['hub', 'transactions', 'vestiaire', 'matchs', 'direction', 'boutique'].forEach(o => {
+            ['hub', 'transactions', 'vestiaire', 'matchs', 'direction', 'strategie', 'stats', 'arena', 'boutique', 'presse', 'loterie'].forEach(o => {
                 const p = document.getElementById('page-' + o);
                 const b = document.getElementById('btn-' + o);
                 if (p) p.classList.add('hidden');
@@ -330,12 +483,26 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function ouvrirModalChat() { document.getElementById('modal-chat').classList.remove('hidden'); }
+        function fermerModalChat() { document.getElementById('modal-chat').classList.add('hidden'); }
+        function ouvrirModalNotifs() { document.getElementById('modal-notifs').classList.remove('hidden'); }
+        function fermerModalNotifs() { document.getElementById('modal-notifs').classList.add('hidden'); }
+
         function lancerRoueCasino() {
             soldeEP += 150;
             const el = document.getElementById('solde-ep-boutique');
             if (el) el.innerText = soldeEP.toLocaleString() + " CC";
-            alert("🎰 Rotation réussie ! +150 Crédits Cyber (CC) ajoutés à votre solde.");
+            alert("🎰 Rotation réussie ! +150 Crédits Cyber (CC) ajoutés.");
         }
+
+        function simulerActionLive() { alert("🏒 Séquence simulée avec succès !"); }
+        function soumettreOffre() { alert("🚀 Transaction soumise !"); }
+        function viderPlateau() { alert("🗑️ Plateau vidé."); }
+        function calculerCoteAlignement() {}
+        function changerPartenaire() {}
+        function choisirTactique(t) { alert("♟️ Tactique choisie : " + t); }
+        function changerPrixBillet(v) { document.getElementById('prix-billet-val').innerText = v + " $"; }
+        function lancerLoterieDraft() { document.getElementById('loto-gagnant-nom').innerText = "Nordiques de Québec (1er Choix !)"; }
 
         window.onload = () => {
             remplirHubCentral();
