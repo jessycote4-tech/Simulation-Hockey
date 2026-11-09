@@ -3,68 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ligue de Simulation de Hockey</title>
+    <title>Ligue de Simulation de Hockey - Portail Officiel</title>
     <style>
         :root {
-            --primary-color: #1a2530;
-            --secondary-color: #2980b9;
-            --accent-color: #e74c3c;
-            --bg-color: #f4f6f7;
-            --text-color: #333;
+            --bg-dark: #0b131f;
+            --bg-card: #14213d;
+            --accent: #e63946;
+            --accent-glow: rgba(230, 57, 70, 0.4);
+            --text-main: #f1faee;
+            --text-muted: #a8dadc;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0; padding: 0;
-            background-color: var(--bg-color); color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            scroll-behavior: smooth;
         }
         header {
-            background-color: var(--primary-color); color: white;
-            padding: 1.5rem 2rem; text-align: center;
+            background: linear-gradient(135deg, #0b131f 0%, #1d3557 100%);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid var(--accent);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
-        header h1 { margin: 0; font-size: 2rem; }
+        header h1 {
+            margin: 0; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px;
+            text-shadow: 0 2px 10px var(--accent-glow);
+        }
         nav {
-            background-color: var(--secondary-color);
+            background-color: #1d3557;
             display: flex; justify-content: center; flex-wrap: wrap;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         nav a {
-            color: white; padding: 1rem 1.5rem; text-decoration: none; font-weight: bold;
+            color: var(--text-main); padding: 1rem 1.5rem; text-decoration: none; font-weight: bold;
+            transition: all 0.3s ease;
         }
-        nav a:hover, nav a.active { background-color: var(--accent-color); }
-        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
-        .card {
-            background: white; padding: 2rem; border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 1.5rem;
+        nav a:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
         }
-        h2 { color: var(--primary-color); margin-top: 0; border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem; }
-        .teams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
-        .team-box { background: #ecf0f1; padding: 1rem; border-radius: 6px; text-align: center; font-weight: bold; }
-        footer { text-align: center; padding: 1.5rem; color: #7f8c8d; margin-top: 3rem; border-top: 1px solid #ddd; }
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        .section-card {
+            background: var(--bg-card); padding: 2rem; border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3); margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
+        }
+        .section-card:hover { transform: translateY(-3px); }
+        h2 {
+            color: var(--text-main); margin-top: 0; 
+            border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; 
+            display: inline-block;
+        }
+        /* Grille des équipes */
+        .teams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .team-box {
+            background: linear-gradient(145deg, #1d3557, #112240);
+            padding: 1.5rem; border-radius: 8px; text-align: center; font-weight: bold; font-size: 1.2rem;
+            border-left: 6px solid var(--accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        /* Boutique & Jeux */
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .sub-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            padding: 1.5rem; border-radius: 8px; text-align: center;
+        }
+        .sub-card h3 { color: var(--text-muted); margin-top: 0; }
+        .price { font-size: 1.3rem; color: var(--accent); font-weight: bold; margin-top: 1rem; }
+        footer {
+            text-align: center; padding: 2rem; background-color: #070b12;
+            color: var(--text-muted); margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.05);
+        }
     </style>
 </head>
 <body>
+
     <header>
         <h1>Ligue de Simulation de Hockey</h1>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Portail officiel des directeurs généraux</p>
     </header>
+
     <nav>
-        <a href="index.html" class="active">Accueil</a>
-        <a href="classement.html">Classement</a>
+        <a href="#accueil">Accueil</a>
+        <a href="#equipes">Équipes</a>
+        <a href="#classement">Classement</a>
+        <a href="#boutique">Boutique</a>
+        <a href="#jeux">Jeux & Loterie</a>
     </nav>
+
     <div class="container">
-        <div class="card">
+        <!-- Accueil -->
+        <div id="accueil" class="section-card">
             <h2>Bienvenue dans la Ligue</h2>
-            <p>Retrouvez toutes les statistiques, les classements et les résultats en direct de notre ligue de simulation.</p>
+            <p>Retrouvez ici le centre névralgique de notre simulation. Suivez l'évolution de vos équipes, gérez vos points d'implication dans la boutique et participez aux événements de la saison.</p>
         </div>
-        <div class="card">
-            <h2>Nos Équipes</h2>
+
+        <!-- Équipes -->
+        <div id="equipes" class="section-card">
+            <h2>Nos Équipes Actives</h2>
             <div class="teams-grid">
                 <div class="team-box">Armada Bois-Brillant</div>
                 <div class="team-box">Bathurst</div>
                 <div class="team-box">Halifax</div>
             </div>
         </div>
+
+        <!-- Classement -->
+        <div id="classement" class="section-card">
+            <h2>Classement Général</h2>
+            <p>Le tableau interactif des performances de votre simulation s'actualise ici au fil de la saison.</p>
+            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; text-align: center; color: var(--text-muted);">
+                [ Espace réservé pour vos tableaux de statistiques et classements STHS ]
+            </div>
+        </div>
+
+        <!-- Boutique -->
+        <div id="boutique" class="section-card">
+            <h2>Boutique du Président</h2>
+            <p>Dépensez vos points d'implication pour obtenir des avantages stratégiques majeurs :</p>
+            <div class="grid-cards">
+                <div class="sub-card">
+                    <h3>Bonus de Persuasion</h3>
+                    <p>Augmente vos chances de signer un joueur autonome convoité.</p>
+                    <div class="price">50 Points</div>
+                </div>
+                <div class="sub-card">
+                    <h3>Développement d'Espoir</h3>
+                    <p>Propulse la progression des attributs de vos jeunes espoirs.</p>
+                    <div class="price">75 Points</div>
+                </div>
+                <div class="sub-card">
+                    <h3>Privilège de Gestion</h3>
+                    <p>Débloque des options de transactions prioritaires.</p>
+                    <div class="price">100 Points</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jeux & Loterie -->
+        <div id="jeux" class="section-card">
+            <h2>Jeux & Loterie du Repêchage</h2>
+            <div class="grid-cards">
+                <div class="sub-card">
+                    <h3>Loterie du Repêchage</h3>
+                    <p>Suivez le suspense des tirages pour le tout premier choix au total.</p>
+                </div>
+                <div class="sub-card">
+                    <h3>Défis & Pronostics</h3>
+                    <p>Participez aux mini-défis hebdomadaires pour accumuler des bonus.</p>
+                </div>
+            </div>
+        </div>
     </div>
+
     <footer>
-        <p>&copy; 2026 - Ligue de Simulation de Hockey</p>
+        <p>&copy; 2026 - Ligue de Simulation de Hockey. Tous droits réservés.</p>
     </footer>
+
 </body>
 </html>
