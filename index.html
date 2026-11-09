@@ -3,349 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ligue de Simulation de Hockey - Portail Officiel</title>
+    <title>LDC WebSim Pro 2026 - Édition Dark Cyber Noir</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --bg-main: #0a0e17;
-            --bg-card: #121929;
-            --bg-card-hover: #1a243b;
-            --accent-red: #ff3b5c;
-            --accent-blue: #00d2ff;
-            --accent-glow: rgba(0, 210, 255, 0.3);
-            --text-title: #ffffff;
-            --text-body: #cbd5e1;
-            --text-muted: #64748b;
-            --border-glow: rgba(255, 255, 255, 0.08);
-        }
-
-        * { box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0; padding: 0;
-            background-color: var(--bg-main);
-            color: var(--text-body);
-            scroll-behavior: smooth;
-            line-height: 1.6;
-        }
-
-        /* En-tête spectaculaire */
-        header {
-            background: radial-gradient(circle at top, #1e293b 0%, var(--bg-main) 100%);
-            padding: 3.5rem 1rem 2.5rem;
-            text-align: center;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
-            position: relative;
+        /* THÈME DARK CYBER : FOND NOIR + GRIS ARDOISE AU CENTRE */
+        .avatar-glow-pale {
+            background: #000000;
+            border-radius: 50%;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
             overflow: hidden;
         }
 
-        header::before {
-            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-red), transparent);
+        body {
+            background-color: #030408;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(14, 165, 233, 0.08) 0px, transparent 50%);
         }
 
-        header h1 {
-            margin: 0; font-size: 2.5rem; font-weight: 900;
-            text-transform: uppercase; letter-spacing: 2px;
-            color: var(--text-title);
-            text-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        .neon-title {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.5));
         }
 
-        header p {
-            margin-top: 0.5rem; color: var(--accent-blue);
-            font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.9rem;
+        .neon-card {
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%) !important;
+            color: #f1f5f9 !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.12), inset 0 0 15px rgba(148, 163, 184, 0.08);
         }
 
-        /* Navigation colée en haut */
-        nav {
-            background-color: rgba(18, 25, 41, 0.95);
-            backdrop-filter: blur(10deg);
-            display: flex; justify-content: center; flex-wrap: wrap;
-            position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid var(--border-glow);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .plateau-transfert-glow {
+            background: radial-gradient(circle at center, #334155 0%, #0f172a 90%) !important;
+            border: 2px solid #38bdf8 !important;
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.25) !important;
+            color: #f8fafc !important;
         }
 
-        nav a {
-            color: var(--text-body); padding: 1.1rem 1.6rem; text-decoration: none; font-weight: 700;
-            font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;
-            transition: all 0.3s ease; position: relative;
+        .card-center-highlight {
+            background: radial-gradient(ellipse at center, rgba(51, 65, 85, 0.45) 0%, rgba(15, 23, 42, 0.98) 85%) !important;
+            border: 1.5px solid rgba(148, 163, 184, 0.35) !important;
         }
 
-        nav a:hover {
-            color: var(--accent-blue);
-            text-shadow: 0 0 10px var(--accent-glow);
+        .box-donne-glow { 
+            background: linear-gradient(135deg, #0f172a 0%, #0284c7 160%) !important; 
+            border: 1.5px solid #38bdf8 !important; 
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2); 
+            color: #f8fafc !important;
+        }
+        
+        .box-recu-glow { 
+            background: linear-gradient(135deg, #1e1b4b 0%, #7c3aed 160%) !important; 
+            border: 1.5px solid #c084fc !important; 
+            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.2); 
+            color: #f8fafc !important;
         }
 
-        nav a::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 0%; height: 3px; background: var(--accent-blue);
-            transition: width 0.3s ease; border-radius: 2px;
+        .carte-joueur-bg {
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%) !important;
+            border: 1px solid rgba(148, 163, 184, 0.3) !important;
+            color: #f8fafc !important;
         }
 
-        nav a:hover::after { width: 80%; }
-
-        /* Conteneur principal */
-        .container { max-width: 1150px; margin: 2.5rem auto; padding: 0 1.2rem; }
-
-        /* Cartes de sections */
-        .section-card {
-            background: var(--bg-card);
-            padding: 2.5rem; border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4); margin-bottom: 2.5rem;
-            border: 1px solid var(--border-glow);
-            transition: all 0.4s ease;
-            position: relative; overflow: hidden;
+        .active-module {
+            background: linear-gradient(135deg, #0284c7 0%, #7c3aed 100%) !important;
+            color: #ffffff !important;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 22px rgba(56, 189, 248, 0.6) !important;
         }
 
-        .section-card:hover {
-            border-color: rgba(0, 210, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 210, 255, 0.1);
+        @keyframes tickerMove { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .ticker-text { display: inline-block; white-space: nowrap; animation: tickerMove 30s linear infinite; }
+        
+        @keyframes pulseGlow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.88; transform: scale(1.01); } }
+        .live-pulse { animation: pulseGlow 2s infinite; }
+
+        @keyframes puckSlide { 0% { left: 10%; top: 50%; } 30% { left: 75% ; top: 25%; } 70% { left: 40%; top: 80%; } 100% { left: 10%; top: 50%; } }
+        .anim-puck { position: absolute; width: 14px; height: 14px; background: #000; border: 2px solid #38bdf8; border-radius: 50%; animation: puckSlide 6s ease-in-out infinite; box-shadow: 0 0 12px #38bdf8; }
+
+        .roue-synthwave-container {
+            position: relative; width: 290px; height: 290px; margin: 0 auto; border-radius: 50%; padding: 10px;
+            background: linear-gradient(145deg, #38bdf8, #818cf8, #c084fc);
+            box-shadow: 0 0 45px rgba(56, 189, 248, 0.😎, 0 0 20px rgba(0,0,0,0.95);
         }
 
-        .section-title {
-            font-size: 1.8rem; color: var(--text-title); font-weight: 800;
-            margin-top: 0; margin-bottom: 1.5rem; text-transform: uppercase;
-            display: flex; align-items: center; gap: 0.8rem;
-        }
-
-        .section-title::before {
-            content: ''; display: inline-block; width: 6px; height: 28px;
-            background: linear-gradient(to bottom, var(--accent-blue), var(--accent-red));
-            border-radius: 3px;
-        }
-
-        /* Grille des Équipes */
-        .teams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-
-        .team-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid var(--border-glow);
-            padding: 2rem 1.5rem; border-radius: 12px; text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative; cursor: pointer;
-        }
-
-        .team-card:hover {
-            transform: translateY(-8px);
-            background: var(--bg-card-hover);
-            border-color: var(--accent-blue);
-            box-shadow: 0 10px 25px rgba(0, 210, 255, 0.2);
-        }
-
-        .team-name { font-size: 1.3rem; font-weight: 800; color: var(--text-title); margin-bottom: 0.5rem; }
-        .team-status { font-size: 0.85rem; color: var(--accent-blue); font-weight: 600; text-transform: uppercase; }
-
-        /* Tableau de Classement Pro */
-        .table-responsive { overflow-x: auto; margin-top: 1rem; border-radius: 10px; }
-
-        table {
-            width: 100%; border-collapse: collapse; text-align: left;
-            background: rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden;
-        }
-
-        th {
-            background: #1a243b; color: var(--text-title);
-            padding: 1rem 1.2rem; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
-        }
-
-        td { padding: 1rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 500; }
-
-        tr:hover td { background: rgba(0, 210, 255, 0.05); color: var(--text-title); }
-
-        .rank { font-weight: 800; color: var(--accent-blue); }
-
-        /* Cartes d'Avantages & Jeux */
-        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-
-        .sub-card {
-            background: var(--bg-card-hover); border: 1px solid var(--border-glow);
-            padding: 1.8rem; border-radius: 12px; text-align: center;
-            transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between;
-        }
-
-        .sub-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-red);
-            box-shadow: 0 10px 25px rgba(255, 59, 92, 0.2);
-        }
-
-        .sub-card h3 { color: var(--text-title); margin-top: 0; font-size: 1.2rem; font-weight: 700; }
-        .sub-card p { font-size: 0.95rem; color: var(--text-body); }
-
-        .price-badge {
-            display: inline-block; margin-top: 1rem; padding: 0.5rem 1.2rem;
-            background: linear-gradient(135deg, var(--accent-red), #d90429);
-            color: white; font-weight: 800; border-radius: 20px;
-            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(255, 59, 92, 0.4);
-        }
-
-        .btn-action {
-            display: inline-block; margin-top: 1rem; padding: 0.7rem 1.4rem;
-            background: linear-gradient(135deg, var(--accent-blue), #0077b6);
-            color: white; font-weight: 700; border-radius: 8px; text-decoration: none;
-            transition: all 0.3s ease; text-transform: uppercase; font-size: 0.85rem;
-        }
-
-        .btn-action:hover {
-            box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.03);
-        }
-
-        footer {
-            text-align: center; padding: 2.5rem; background-color: #06090e;
-            color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05);
+        .roue-synthwave-inner {
+            width: 100%; height: 100%; border-radius: 50%;
+            background: conic-gradient(#ef4444 0deg 45deg, #10b981 45deg 90deg, #8b5cf6 90deg 135deg, #0284c7 135deg 180deg, #f59e0b 180deg 225deg, #dc2626 225deg 270deg, #38bdf8 270deg 315deg, #be123c 315deg 360deg);
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.95); transition: transform 5s cubic-bezier(0.12, 0.98, 0.15, 1);
         }
     </style>
 </head>
-<body>
+<body class="text-sky-100 min-h-screen font-sans pb-20">
 
-    <header>
-        <h1>Ligue de Simulation de Hockey</h1>
-        <p>Portail Officiel des Directeurs Généraux</p>
-    </header>
-
-    <nav>
-        <a href="#accueil">Accueil</a>
-        <a href="#equipes">Équipes</a>
-        <a href="#classement">Classement</a>
-        <a href="#boutique">Boutique</a>
-        <a href="#jeux">Jeux & Loterie</a>
-    </nav>
-
-    <div class="container">
-        
-        <!-- Section Accueil -->
-        <div id="accueil" class="section-card">
-            <h2 class="section-title">Bienvenue dans le Quartier Général</h2>
-            <p>Retrouvez ici le centre névralgique de notre ligue de simulation. Suivez l'évolution des performances de vos équipes, gérez vos points d'implication dans la boutique exclusive des DG et vivez l'intensité des événements tout au long de la saison.</p>
-        </div>
-
-        <!-- Section Équipes -->
-        <div id="equipes" class="section-card">
-            <h2 class="section-title">Les Équipes de la Ligue</h2>
-            <div class="teams-grid">
-                <div class="team-card">
-                    <div class="team-name">Armada Bois-Brillant</div>
-                    <div class="team-status">Franchise Active</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-name">Bathurst</div>
-                    <div class="team-status">Franchise Active</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-name">Halifax</div>
-                    <div class="team-status">Franchise Active</div>
-                </div>
+    <!-- TICKER EN DIRECT -->
+    <div class="bg-black/95 border-b border-sky-900/60 text-xs py-1.5 px-3 sm:px-4 overflow-hidden relative flex items-center z-50 backdrop-blur-md">
+        <span class="bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-black px-2 py-0.5 rounded text-[10px] uppercase tracking-wider mr-2 sm:mr-3 z-10 shrink-0 flex items-center gap-1 shadow-lg">
+            <i class="fa-solid fa-bolt"></i> LDC DARK CYBER 2026
+        </span>
+        <div class="overflow-hidden w-full relative">
+            <div class="ticker-text text-sky-200/90 space-x-8">
+                <span>🎰 <strong>ÉDITION DARK CYBER !</strong> • Fond noir profond • Bleu Cyan & Violet Rétro • Affichage géant des résultats • Pièges redoutables 💣🔥</span>
             </div>
         </div>
-
-        <!-- Section Classement -->
-        <div id="classement" class="section-card">
-            <h2 class="section-title">Classement Général</h2>
-            <p>Résultats et performances récapitulatives de la saison en cours :</p>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Rang</th>
-                            <th>Équipe</th>
-                            <th>PJ</th>
-                            <th>V</th>
-                            <th>D</th>
-                            <th>DP</th>
-                            <th>PTS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="rank">1</td>
-                            <td><strong>Armada Bois-Brillant</strong></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td><strong>0</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="rank">2</td>
-                            <td><strong>Bathurst</strong></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td><strong>0</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="rank">3</td>
-                            <td><strong>Halifax</strong></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td><strong>0</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Section Boutique du Président -->
-        <div id="boutique" class="section-card">
-            <h2 class="section-title">Boutique du Président</h2>
-            <p>Utilisez vos points d'implication accumulés pour offrir des avantages tactiques majeurs à votre équipe :</p>
-            <div class="grid-cards">
-                <div class="sub-card">
-                    <div>
-                        <h3>Bonus de Persuasion</h3>
-                        <p>Augmente considérablement les chances de signer un joueur autonome ou hésitant.</p>
-                    </div>
-                    <div><span class="price-badge">50 Points</span></div>
-                </div>
-                <div class="sub-card">
-                    <div>
-                        <h3>Développement d'Espoir</h3>
-                        <p>Accélère la progression et l'évolution des attributs d'un jeune joueur prometteur.</p>
-                    </div>
-                    <div><span class="price-badge">75 Points</span></div>
-                </div>
-                <div class="sub-card">
-                    <div>
-                        <h3>Privilège de Gestion</h3>
-                        <p>Accès prioritaire lors des fenêtres de transactions et exemptions spéciales.</p>
-                    </div>
-                    <div><span class="price-badge">100 Points</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section Jeux & Loterie -->
-        <div id="jeux" class="section-card">
-            <h2 class="section-title">Jeux & Loterie du Repêchage</h2>
-            <div class="grid-cards">
-                <div class="sub-card">
-                    <div>
-                        <h3>Loterie du Repêchage</h3>
-                        <p>Déroulement et tirage officiel des combinaisons pour l'obtention du tout premier choix au repêchage.</p>
-                    </div>
-                    <div><a href="#" class="btn-action">Voir les tirages</a></div>
-                </div>
-                <div class="sub-card">
-                    <div>
-                        <h3>Défis & Pronostics</h3>
-                        <p>Participez aux mini-défis hebdomadaires de la ligue pour récolter des bonus d'implication.</p>
-                    </div>
-                    <div><a href="#" class="btn-action">Participer</a></div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <footer>
-        <p>&copy; 2026 - Ligue de Simulation de Hockey | Tous droits réservés</p>
-    </footer>
+    <!-- EN-TÊTE PRINCIPAL -->
+    <header class="neon-card border-b border-sky-500/50 p-3 sm:p-4 sticky top-0 z-40 shadow-2xl backdrop-blur-md" style="border-radius:0 0 1rem 1rem;">
+        <div class="max-w-7xl mx-auto flex flex-wrap sm:flex-nowrap justify-between items-center gap-3">
+            <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 avatar-glow-pale flex items-center justify-center shrink-0">
+                    <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=150&auto=format&fit=crop&q=80" class="w-full h-full rounded-full object-cover">
+                </div>
+                <div class="min-w-0">
+                    <h1 class="text-sm sm:text-lg font-black tracking-wider neon-title flex items-center gap-1.5 truncate">
+                        🏒 LDC WEBSIM <span class="bg-sky-600 text-white text-[9px] uppercase font-black px-1.5 py-0.5 rounded-full inline-block">DARK CYBER</span>
+                    </h1>
+                    <p class="text-[10px] sm:text-xs text-sky-300/80 truncate">⚡ Échanges, Lignes, Négos, Casino & Direct Live</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 ml-auto sm:ml-0">
+                <button onclick="ouvrirModalChat()" class="relative bg-zinc-950/90 hover:bg-zinc-900 text-sky-400 font-bold px-2.5 sm:px-3.5 py-2 rounded-xl border border-sky-500/50 text-xs flex items-center gap-1.5 shadow-lg transition">
+                    <i class="fa-solid fa-comments"></i> Chat DG <span class="bg-sky-500 text-black text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center -top-1 -right-1 absolute animate-bounce">2</span>
+                </button>
+                <button onclick="ouvrirModalNotifs()" class="relative bg-zinc-950/90 hover:bg-zinc-900 text-purple-400 font-bold px-2.5 sm:px-3.5 py-2 rounded-xl border border-purple-500/50 text-xs flex items-center gap-1.5 shadow-lg transition">
+                    <i class="fa-solid fa-bell"></i> Alertes <span id="badge-alertes-count" class="bg-purple-500 text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center -top-1 -right-1 absolute">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
 
+    <!-- BARRE DE NAVIGATION -->
+    <nav class="bg-slate-900/95 border-b border-sky-500/40 py-2.5 px-3 sm:px-4 sticky top-[65px] sm:top-[73px] z-30 backdrop-blur-md shadow-xl overflow-x-auto" style="background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);">
+        <div class="max-w-7xl mx-auto flex gap-2 min-w-max">
+            <button onclick="changerOnglet('hub')" id="btn-hub" class="active-module px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-table-cells text-sky-400"></i> 1. Hub Central</button>
+            <button onclick="changerOnglet('transactions')" id="btn-transactions" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-right-left text-sky-400"></i> 2. Échanges</button>
+            <button onclick="changerOnglet('vestiaire')" id="btn-vestiaire" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-shirt text-purple-400"></i> 3. Trios</button>
+            <button onclick="changerOnglet('matchs')" id="btn-matchs" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-hockey-puck text-sky-400"></i> 4. Direct Live</button>
+            <button onclick="changerOnglet('direction')" id="btn-direction" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-file-contract text-purple-400"></i> 5. Négos</button>
+            <button onclick="changerOnglet('strategie')" id="btn-strategie" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-chess-board text-sky-400"></i> 6. Tactique</button>
+            <button onclick="changerOnglet('stats')" id="btn-stats" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-chart-bar text-sky-400"></i> 7. Stats</button>
+            <button onclick="changerOnglet('boutique')" id="btn-boutique" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-dice text-purple-400"></i> 8. Casino Cyber</button>
+            <button onclick="changerOnglet('presse')" id="btn-presse" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-newspaper text-sky-400"></i> 9. Médias</button>
+            <button onclick="changerOnglet('loterie')" id="btn-loterie" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"><i class="fa-solid fa-trophy text-amber-400"></i> 10. Loterie</button>
+        </div>
+    </nav>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="max-w-7xl mx-auto p-3 sm:p-6 space-y-6">
+
+        <!-- ONGLET 1 : HUB CENTRAL -->
+        <div id="page-hub" class="space-y-6">
+            <div class="neon-card p-4 sm:p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="flex flex-wrap justify-between items-center gap-4 border-b border-sky-900/50 pb-4">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-black neon-title flex items-center gap-2">
+                            <i class="fa-solid fa-table-cells text-sky-400"></i> Hub Central & Vision Globale des Attributs
+                        </h2>
+                        <p class="text-xs text-sky-300/70">⚡ Visualisez, comparez et modifiez tous les joueurs en un seul endroit.</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="basculerCadenasPresident()" id="btn-cadenas-president" class="bg-zinc-900 text-purple-300 px-3 py-1.5 rounded-xl border border-purple-500/40 text-xs font-bold flex items-center gap-1.5 shadow">
+                            <i class="fa-solid fa-lock text-purple-400"></i> Cadenas Fermé (Sécurisé)
+                        </button>
+                        <select id="hub-filtre-equipe" onchange="filtrerHubCentral()" class="bg-slate-900 border-2 border-sky-400 text-sky-100 font-bold p-2 rounded-xl text-xs outline-none">
+                            <option value="tous">🌐 TOUTES LES ÉQUIPES</option>
+                            <option value="quebec">👑 Nordiques de Québec</option>
+                            <option value="stockholm">🛡️ Viking de Stockholm</option>
+                            <option value="montreal">🔵 Canadiens de Montréal</option>
+                        </select>
+                        <select id="hub-filtre-pos" onchange="filtrerHubCentral()" class="bg-slate-900 border-2 border-purple-400 text-sky-100 font-bold p-2 rounded-xl text-xs outline-none">
+                            <option value="tous">📋 Toutes les Positions</option>
+                            <option value="C">⚔️ Centres (C)</option>
+                            <option value="ailiers">⚡ Ailiers (AG / AD)</option>
+                            <option value="D">🛡️ Défenseurs (D)</option>
+                            <option value="G">🥅 Gardiens (G)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="bg-black/90 p-4 rounded-2xl border border-sky-500/40 shadow-2xl overflow-x-auto">
+                    <table class="w-full text-left text-xs whitespace-nowrap">
+                        <thead class="bg-zinc-950 text-sky-300 uppercase text-[10px] border-b border-sky-900/60">
+                            <tr>
+                                <th class="p-3">Joueur & Équipe</th>
+                                <th class="p-3 text-center">Pos</th>
+                                <th class="p-3 text-center">Moy</th>
+                                <th class="p-3 text-center">Patin</th>
+                                <th class="p-3 text-center">Tir</th>
+                                <th class="p-3 text-center">Passe</th>
+                                <th class="p-3 text-center">Physique</th>
+                                <th class="p-3 text-center">Poignet</th>
+                                <th class="p-3 text-center">Frappe</th>
+                                <th class="p-3 text-center">Échec</th>
+                                <th class="p-3">Lien DG 🔗</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-zinc-900 font-bold" id="table-hub-corps"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 2 : TRANSACTIONS -->
+        <div id="page-transactions" class="hidden space-y-6">
+            <div class="neon-card p-4 sm:p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="flex flex-wrap justify-between items-center gap-4 border-b border-sky-900/50 pb-4">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-black neon-title flex items-center gap-2">
+                            <i class="fa-solid fa-right-left text-sky-400"></i> Bureau des Transactions 2026
+                        </h2>
+                        <p class="text-xs text-sky-300/70">🔁 Cliquez sur les joueurs pour alimenter la zone centrale.</p>
+                    </div>
+                    <select id="partenaire-change" onchange="changerPartenaire()" class="bg-slate-900 border-2 border-sky-400 text-sky-100 font-bold p-2 rounded-xl text-xs outline-none">
+                        <option value="sto">👑 Viking de Stockholm (DG Anders)</option>
+                        <option value="mtl">🔵 Canadiens de Montréal (DG Hughes)</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+                    <div class="lg:col-span-4 bg-black/80 p-4 rounded-2xl border border-sky-500/40 space-y-4">
+                        <h3 class="font-black text-sky-400 text-xs uppercase"><i class="fa-solid fa-shield-halved"></i> Vos Joueurs (Québec)</h3>
+                        <div class="space-y-3.5 max-h-[460px] overflow-y-auto" id="inventaire-local-joueurs"></div>
+                    </div>
+                    <div class="lg:col-span-4 plateau-transfert-glow card-center-highlight p-4.5 rounded-2xl space-y-4 shadow-2xl">
+                        <h3 class="font-black neon-title text-sm uppercase text-center"><i class="fa-solid fa-arrow-right-arrow-left"></i> ZONE D'ÉCHANGE CENTRALE</h3>
+                        <div class="box-donne-glow p-3 rounded-xl min-h-[120px] space-y-3" id="plateau-donne"><span class="text-[11px] text-sky-300/70 block text-center py-8">Vous Donnez</span></div>
+                        <div class="box-recu-glow p-3 rounded-xl min-h-[120px] space-y-3" id="plateau-recu"><span class="text-[11px] text-purple-300/70 block text-center py-8">Vous Recevez</span></div>
+                        <button onclick="soumettreOffre()" class="bg-gradient-to-r from-sky-500 to-purple-600 text-white font-black py-3 rounded-xl text-xs w-full shadow">SOUMETTRE LA TRANSACTION</button>
+                        <button onclick="viderPlateau()" class="bg-zinc-950 text-sky-200 font-bold py-2 rounded-xl text-[11px] w-full border border-zinc-800">Vider le Plateau</button>
+                    </div>
+                    <div class="lg:col-span-4 bg-black/80 p-4 rounded-2xl border border-purple-500/40 space-y-4">
+                        <h3 class="font-black text-purple-400 text-xs uppercase" id="titre-col-adverse"><i class="fa-solid fa-user-shield"></i> Stockholm</h3>
+                        <div class="space-y-3.5 max-h-[460px] overflow-y-auto" id="inventaire-adverse-joueurs"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 3 : TRIOS & VESTIAIRE -->
+        <div id="page-vestiaire" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="flex justify-between items-center border-b border-sky-900/50 pb-4">
+                    <h2 class="text-2xl font-black neon-title"><i class="fa-solid fa-shirt"></i> Gestion des 4 Trios & Duos</h2>
+                    <span id="cote-globale-alignement" class="text-lg font-black text-emerald-400">91.4 / 100</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-black p-4 rounded-2xl border border-sky-500/50 space-y-3">
+                        <span class="font-black text-xs text-sky-400 uppercase">🔥 TRIO #1</span>
+                        <div class="grid grid-cols-3 gap-2 text-xs">
+                            <select id="t1-ag" onchange="calculerCoteAlignement()" class="bg-zinc-950 text-sky-100 p-2 rounded-xl"><option>Alexis Lafrenière</option></select>
+                            <select id="t1-c" onchange="calculerCoteAlignement()" class="bg-zinc-950 text-sky-100 p-2 rounded-xl"><option selected>Jean Béliveau</option></select>
+                            <select id="t1-ad" onchange="calculerCoteAlignement()" class="bg-zinc-950 text-sky-100 p-2 rounded-xl"><option selected>Guy Lafleur</option></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 4 : DIRECT LIVE -->
+        <div id="page-matchs" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="bg-black p-6 rounded-2xl border-2 border-sky-500/50 shadow-2xl space-y-6 relative overflow-hidden live-pulse">
+                    <div class="anim-puck"></div>
+                    <div class="flex justify-between items-center">
+                        <div><h3>Nordiques de Québec</h3><span class="text-xs">Tirs : <strong id="tirs-quebec">28</strong></span></div>
+                        <div class="text-center bg-zinc-950 px-8 py-4 rounded-2xl border border-sky-500/40">
+                            <div class="text-4xl font-black neon-title"><span id="score-q">4</span> - <span id="score-s">2</span></div>
+                            <span class="text-[10px] text-emerald-400">3e Période (14:22)</span>
+                        </div>
+                        <div><h3>Viking de Stockholm</h3><span class="text-xs">Tirs : <strong id="tirs-stockholm">22</strong></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 8 : CASINO CYBER -->
+        <div id="page-boutique" class="hidden space-y-6">
+            <div class="bg-gradient-to-r from-slate-900 via-purple-950 to-indigo-950 p-6 rounded-3xl border-2 border-sky-400 flex justify-between items-center">
+                <div>
+                    <h2 class="text-3xl font-black neon-title">Casino Dark Cyber & QG</h2>
+                </div>
+                <div class="bg-black/90 border-2 border-sky-400 p-4 rounded-2xl text-center">
+                    <span class="text-[10px] text-sky-300 block uppercase font-black">SOLDE DU DG</span>
+                    <span id="solde-ep-boutique" class="text-2xl font-black neon-title">4,500 CC</span>
+                </div>
+            </div>
+            <div class="bg-black/90 p-6 sm:p-8 rounded-3xl border border-sky-500/40 text-center space-y-6 max-w-2xl mx-auto">
+                <div class="roue-synthwave-container my-4">
+                    <div id="roue-visuel-casino" class="roue-synthwave-inner relative flex items-center justify-center">
+                        <div class="w-20 h-20 rounded-full bg-black border-4 border-sky-500 flex flex-col items-center justify-center text-center p-1 z-20">
+                            <span id="roue-statut-casino" class="text-[10px] font-black text-sky-100">SPIN 🎲</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="lancerRoueCasino()" class="bg-gradient-to-r from-sky-500 to-purple-600 text-white font-black px-6 py-3.5 rounded-2xl text-xs w-full shadow">TOURNER LA ROULETTE LAZER ! 🎰</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        let soldeEP = 4500;
+        let modeActuel = 'safe';
+
+        const tousLesJoueursLigue = [
+            { id: 'q1', nom: 'Jean Béliveau', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'C', moy: 92, patin: 92, tir: 95, passe: 98, physique: 88, poignet: 96, frappe: 92, echec: 85, lien: '' },
+            { id: 'q2', nom: 'Guy Lafleur', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'AD', moy: 87, patin: 97, tir: 96, passe: 93, physique: 82, poignet: 98, frappe: 95, echec: 78, lien: '' },
+            { id: 'q3', nom: 'Serge Savard', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'DD', moy: 88, patin: 84, tir: 82, passe: 88, physique: 92, poignet: 80, frappe: 94, echec: 96, lien: '' },
+            { id: 'q4', nom: 'Alexis Lafrenière', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'AG', moy: 81, patin: 88, tir: 85, passe: 84, physique: 80, poignet: 87, frappe: 84, echec: 81, lien: '' },
+            { id: 's1', nom: 'Mats Sundin', equipe: 'Viking de Stockholm', equipeKey: 'stockholm', pos: 'C', moy: 90, patin: 88, tir: 91, passe: 93, physique: 93, poignet: 91, frappe: 89, echec: 90, lien: '' },
+            { id: 'm1', nom: 'Carey Price', equipe: 'Canadiens de Montréal', equipeKey: 'montreal', pos: 'G', moy: 95, patin: 86, tir: 50, passe: 70, physique: 88, poignet: 60, frappe: 60, echec: 70, lien: '' }
+        ];
+
+        let modeEditionPresidentActif = false;
+
+        function basculerCadenasPresident() {
+            modeEditionPresidentActif = !modeEditionPresidentActif;
+            filtrerHubCentral();
+            const btn = document.getElementById('btn-cadenas-president');
+            if (modeEditionPresidentActif) {
+                btn.className = "bg-emerald-600 text-white px-3 py-1.5 rounded-xl border border-emerald-400 text-xs font-bold flex items-center gap-1.5 shadow";
+                btn.innerHTML = <i class="fa-solid fa-lock-open"></i> Cadenas Ouvert (Mode Édition);
+            } else {
+                btn.className = "bg-zinc-900 text-purple-300 px-3 py-1.5 rounded-xl border border-purple-500/40 text-xs font-bold flex items-center gap-1.5 shadow";
+                btn.innerHTML = <i class="fa-solid fa-lock text-purple-400"></i> Cadenas Fermé (Sécurisé);
+            }
+        }
+
+        function filtrerHubCentral() {
+            const filtreEq = document.getElementById('hub-filtre-equipe').value;
+            const filtrePos = document.getElementById('hub-filtre-pos').value;
+            let html = '';
+            tousLesJoueursLigue.forEach(j => {
+                if (filtreEq !== 'tous' && j.equipeKey !== filtreEq) return;
+                if (filtrePos === 'C' && j.pos !== 'C') return;
+                if (filtrePos === 'ailiers' && j.pos !== 'AG' && j.pos !== 'AD') return;
+                if (filtrePos === 'D' && j.pos !== 'DD' && j.pos !== 'DG') return;
+                if (filtrePos === 'G' && j.pos !== 'G') return;
+
+                html += `
+                    <tr class="hover:bg-zinc-950 transition">
+                        <td class="p-3"><span class="font-bold text-sky-100 block">${j.nom}</span><span class="text-[10px] text-sky-400">${j.equipe}</span></td>
+                        <td class="p-3 text-center"><span class="bg-black px-2 py-0.5 rounded text-sky-300">${j.pos}</span></td>
+                        <td class="p-3 text-center text-emerald-400 font-black">${j.moy}</td>
+                        <td class="p-3 text-center">${j.patin}</td>
+                        <td class="p-3 text-center">${j.tir}</td>
+                        <td class="p-3 text-center">${j.passe}</td>
+                        <td class="p-3 text-center">${j.physique}</td>
+                        <td class="p-3 text-center">${j.poignet}</td>
+                        <td class="p-3 text-center">${j.frappe}</td>
+                        <td class="p-3 text-center">${j.echec}</td>
+                        <td class="p-3"><input type="text" value="${j.lien}" placeholder="Lien..." class="bg-zinc-950 border border-sky-500/40 text-sky-100 px-2 py-1 rounded text-xs w-40 outline-none"></td>
+                    </tr>
+                `;
+            });
+            document.getElementById('table-hub-corps').innerHTML = html;
+        }
+
+        function changerOnglet(onglet) {
+            ['hub', 'transactions', 'vestiaire', 'strategie', 'direction', 'matchs', 'boutique', 'presse', 'stats', 'arena', 'loterie', 'staff', 'rumeurs'].forEach(o => {
+                const p = document.getElementById('page-' + o);
+                const b = document.getElementById('btn-' + o);
+                if (p) p.classList.add('hidden');
+                if (b) b.className = "bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow";
+            });
+            const targetPage = document.getElementById('page-' + onglet);
+            const targetBtn = document.getElementById('btn-' + onglet);
+            if (targetPage) targetPage.classList.remove('hidden');
+            if (targetBtn) targetBtn.className = "active-module px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function lancerRoueCasino() {
+            soldeEP += 100;
+            document.getElementById('solde-ep-boutique').innerText = soldeEP + " CC";
+            alert("🎰 Victoire à la roulette ! +100 CC ajoutés.");
+        }
+
+        window.onload = () => {
+            filtrerHubCentral();
+            changerOnglet('hub');
+        };
+    </script>
 </body>
 </html>
