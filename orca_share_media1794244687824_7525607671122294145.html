@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LDC WebSim Pro 2026 - Édition Dark Cyber Noir</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+        /* THÈME DARK CYBER : FOND NOIR + GRIS ARDOISE AU CENTRE */
+        
+        .avatar-glow-pale {
+            background: #000000;
+            border-radius: 50%;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+
+        body {
+            background-color: #030408;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(14, 165, 233, 0.08) 0px, transparent 50%);
+        }
+
+        .neon-title {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.5));
+        }
+
+        /* CARTES ET MODULES CENTRAUX : GRIS ARDOISE SUBTIL ET SOIGNÉ */
+        .neon-card {
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%) !important;
+            color: #f1f5f9 !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.12), inset 0 0 15px rgba(148, 163, 184, 0.08);
+        }
+
+        /* Plateau central d'échange : Gris ardoise fondu avec touche lumineuse au centre */
+        .plateau-transfert-glow {
+            background: radial-gradient(circle at center, #334155 0%, #0f172a 90%) !important;
+            border: 2px solid #38bdf8 !important;
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.25) !important;
+            color: #f8fafc !important;
+        }
+
+        .card-center-highlight {
+            background: radial-gradient(ellipse at center, rgba(51, 65, 85, 0.45) 0%, rgba(15, 23, 42, 0.98) 85%) !important;
+            border: 1.5px solid rgba(148, 163, 184, 0.35) !important;
+        }
+
+        .box-donne-glow { 
+            background: linear-gradient(135deg, #0f172a 0%, #0284c7 160%) !important; 
+            border: 1.5px solid #38bdf8 !important; 
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2); 
+            color: #f8fafc !important;
+        }
+        
+        .box-recu-glow { 
+            background: linear-gradient(135deg, #1e1b4b 0%, #7c3aed 160%) !important; 
+            border: 1.5px solid #c084fc !important; 
+            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.2); 
+            color: #f8fafc !important;
+        }
+
+        .carte-joueur-bg {
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%) !important;
+            border: 1px solid rgba(148, 163, 184, 0.3) !important;
+            color: #f8fafc !important;
+        }
+
+        .active-module {
+            background: linear-gradient(135deg, #0284c7 0%, #7c3aed 100%) !important;
+            color: #ffffff !important;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 22px rgba(56, 189, 248, 0.6) !important;
+        }
+
+        @keyframes tickerMove { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .ticker-text { display: inline-block; white-space: nowrap; animation: tickerMove 30s linear infinite; }
+        
+        @keyframes pulseGlow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.88; transform: scale(1.01); } }
+        .live-pulse { animation: pulseGlow 2s infinite; }
+
+        @keyframes puckSlide { 0% { left: 10%; top: 50%; } 30% { left: 75% ; top: 25%; } 70% { left: 40%; top: 80%; } 100% { left: 10%; top: 50%; } }
+        .anim-puck { position: absolute; width: 14px; height: 14px; background: #000; border: 2px solid #38bdf8; border-radius: 50%; animation: puckSlide 6s ease-in-out infinite; box-shadow: 0 0 12px #38bdf8; }
+
+        /* CASINO DARK CYBER - ROULETTE & EFFETS */
+        .casino-synthwave-card {
+            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.95) 0%, rgba(4, 7, 16, 0.98) 100%);
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 50px rgba(56, 189, 248, 0.35), inset 0 0 30px rgba(147, 51, 234, 0.25);
+        }
+
+        .roue-synthwave-container {
+            position: relative;
+            width: 290px;
+            height: 290px;
+            margin: 0 auto;
+            border-radius: 50%;
+            padding: 10px;
+            background: linear-gradient(145deg, #38bdf8, #818cf8, #c084fc);
+            box-shadow: 0 0 45px rgba(56, 189, 248, 0.8), 0 0 20px rgba(0,0,0,0.95);
+        }
+
+        .roue-synthwave-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                #ef4444 0deg 45deg,
+                #10b981 45deg 90deg,
+                #8b5cf6 90deg 135deg,
+                #0284c7 135deg 180deg,
+                #f59e0b 180deg 225deg,
+                #dc2626 225deg 270deg,
+                #38bdf8 270deg 315deg,
+                #be123c 315deg 360deg
+            );
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.95);
+            transition: transform 5s cubic-bezier(0.12, 0.98, 0.15, 1);
+        }
+
+        @keyframes neonLasers {
+            0%, 100% { opacity: 1; filter: drop-shadow(0 0 12px #38bdf8); }
+            50% { opacity: 0.5; filter: drop-shadow(0 0 5px #818cf8); }
+        }
+        .ampoule-neon {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #38bdf8;
+            border-radius: 50%;
+            animation: neonLasers 0.8s infinite alternate;
+        }
+
+        @keyframes alertFlash {
+            0%, 100% { border-color: #ef4444; box-shadow: 0 0 25px rgba(239, 68, 68, 0.6); }
+            50% { border-color: #f87171; box-shadow: 0 0 45px rgba(239, 68, 68, 0.95); }
+        }
+        .alerte-piege {
+            animation: alertFlash 1s infinite;
+            background: linear-gradient(135deg, rgba(65, 10, 20, 0.95) 0%, rgba(10, 4, 12, 0.98) 100%);
+        }
+
+        @keyframes popupResult {
+            0% { transform: scale(0.7); opacity: 0; }
+            50% { transform: scale(1.08); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .resultat-spin-anime {
+            animation: popupResult 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        </style>
+</head>
+<body class="text-sky-100 min-h-screen font-sans pb-20">
+
+    <!-- TICKER EN DIRECT -->
+    <div class="bg-black/95 border-b border-sky-900/60 text-xs py-1.5 px-3 sm:px-4 overflow-hidden relative flex items-center z-50 backdrop-blur-md">
+        <span class="bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-black px-2 py-0.5 rounded text-[10px] uppercase tracking-wider mr-2 sm:mr-3 z-10 shrink-0 flex items-center gap-1 shadow-lg">
+            <i class="fa-solid fa-bolt"></i> LDC DARK CYBER 2026
+        </span>
+        <div class="overflow-hidden w-full relative">
+            <div class="ticker-text text-sky-200/90 space-x-8">
+                <span>🎰 <strong>ÉDITION DARK CYBER !</strong> • Fond noir profond • Bleu Cyan & Violet Rétro • Affichage géant des résultats • Pièges redoutables 💣🔥</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- EN-TÊTE PRINCIPAL (OPTIMISÉ CELLULAIRE SUR FOND NOIR) -->
+    <header class="neon-card border-b border-sky-500/50 p-3 sm:p-4 sticky top-0 z-40 shadow-2xl backdrop-blur-md" style="border-radius:0 0 1rem 1rem;">
+        <div class="max-w-7xl mx-auto flex flex-wrap sm:flex-nowrap justify-between items-center gap-3">
+            
+            <!-- Logo & Nom -->
+            <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 avatar-glow-pale flex items-center justify-center shrink-0">
+                    <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=150&auto=format&fit=crop&q=80" class="w-full h-full rounded-full object-cover">
+                </div>
+                <div class="min-w-0">
+                    <h1 class="text-sm sm:text-lg font-black tracking-wider neon-title flex items-center gap-1.5 truncate">
+                        🏒 LDC WEBSIM <span class="bg-sky-600 text-white text-[9px] uppercase font-black px-1.5 py-0.5 rounded-full inline-block">DARK CYBER</span>
+                    </h1>
+                    <p class="text-[10px] sm:text-xs text-sky-300/80 truncate">⚡ Échanges, Lignes, Négos, Casino & Direct Live</p>
+                </div>
+            </div>
+
+            <!-- BOUTONS D'ALERTES ET MESSAGERIE (FOND NOIR & COULEURS CLASSIQUES BLEU/CYAN) -->
+            <div class="flex items-center gap-2 shrink-0 ml-auto sm:ml-0">
+                <button onclick="ouvrirModalChat()" class="relative bg-zinc-950/90 hover:bg-zinc-900 text-sky-400 font-bold px-2.5 sm:px-3.5 py-2 rounded-xl border border-sky-500/50 text-xs flex items-center gap-1.5 shadow-lg transition">
+                    <i class="fa-solid fa-comments text-xs sm:text-sm"></i>
+                    <span class="text-[11px] sm:text-xs">Chat DG</span>
+                    <span class="bg-sky-500 text-black text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center -top-1 -right-1 absolute animate-bounce">2</span>
+                </button>
+                <button onclick="ouvrirModalNotifs()" class="relative bg-zinc-950/90 hover:bg-zinc-900 text-purple-400 font-bold px-2.5 sm:px-3.5 py-2 rounded-xl border border-purple-500/50 text-xs flex items-center gap-1.5 shadow-lg transition">
+                    <i class="fa-solid fa-bell text-xs sm:text-sm"></i>
+                    <span class="text-[11px] sm:text-xs">Alertes</span>
+                    <span id="badge-alertes-count" class="bg-purple-500 text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center -top-1 -right-1 absolute">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BARRE DE NAVIGATION -->
+    <nav class="bg-slate-900/95 border-b border-sky-500/40 py-2.5 px-3 sm:px-4 sticky top-[65px] sm:top-[73px] z-30 backdrop-blur-md shadow-xl overflow-x-auto" style="background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);">
+        <div class="max-w-7xl mx-auto flex gap-2 min-w-max">
+            <button onclick="changerOnglet('hub')" id="btn-hub" class="active-module bg-zinc-950 hover:bg-zinc-900 text-sky-100 border border-sky-500/40 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-table-cells text-sky-400"></i> 1. Hub Central & Attributs
+            </button>
+            <button onclick="changerOnglet('transactions')" id="btn-transactions" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-right-left text-sky-400"></i> 2. Bureau des Échanges
+            </button>
+            <button onclick="changerOnglet('vestiaire')" id="btn-vestiaire" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-shirt text-purple-400"></i> 3. Trios & Vestiaire
+            </button>
+            <button onclick="changerOnglet('matchs')" id="btn-matchs" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-hockey-puck text-sky-400"></i> 4. Direct Live & Matchs
+            </button>
+            <button onclick="changerOnglet('direction')" id="btn-direction" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-file-contract text-purple-400"></i> 5. Négos & Agents Libres
+            </button>
+            <button onclick="changerOnglet('strategie')" id="btn-strategie" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-sky-500/30 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-chess-board text-sky-400"></i> 6. Stratégie & Tactique
+            </button>
+            <button onclick="changerOnglet('stats')" id="btn-stats" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-chart-bar text-sky-400"></i> 7. Stats & Pointeurs
+            </button>
+            <button onclick="changerOnglet('arena')" id="btn-arena" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-building text-emerald-400"></i> 8. Amphithéâtre & Staff
+            </button>
+            <button onclick="changerOnglet('boutique')" id="btn-boutique" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-dice text-purple-400"></i> 9. Casino Cyber
+            </button>
+            <button onclick="changerOnglet('presse')" id="btn-presse" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-newspaper text-sky-400"></i> 10. Médias & Rumeurs
+            </button>
+            <button onclick="changerOnglet('loterie')" id="btn-loterie" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-trophy text-amber-400"></i> 11. Loterie Draft
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="max-w-7xl mx-auto p-3 sm:p-6 space-y-6">
+
+        <!-- ========================================== -->
+        <!-- ONGLET 1 : HUB CENTRAL & ATTRIBUTS (NOUVEAU) -->
+        <!-- ========================================== -->
+        <div id="page-hub" class="space-y-6">
+            <div class="neon-card p-4 sm:p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="flex flex-wrap justify-between items-center gap-4 border-b border-sky-900/50 pb-4">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-black neon-title flex items-center gap-2">
+                            <i class="fa-solid fa-table-cells text-sky-400"></i> Hub Central & Vision Globale des Attributs
+                        </h2>
+                        <p class="text-xs text-sky-300/70">⚡ Visualisez, comparez et modifiez (sécurisé) tous les joueurs de la ligue en un seul endroit.</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <div>
+                            <button onclick="basculerCadenasPresident()" id="btn-cadenas-president" class="bg-zinc-900 hover:bg-purple-600 text-purple-300 hover:text-white px-3 py-1.5 rounded-xl border border-purple-500/40 text-xs font-bold transition flex items-center gap-1.5 shadow">
+                                <i class="fa-solid fa-lock text-purple-400"></i> Cadenas Fermé (Sécurisé)
+                            </button>
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-sky-400 font-bold block mb-1 uppercase">Filtrer par Équipe</label>
+                            <select id="hub-filtre-equipe" onchange="filtrerHubCentral()" class="bg-slate-900 border-2 border-sky-400 text-sky-100 font-bold p-2 rounded-xl text-xs shadow-lg outline-none cursor-pointer">
+                                <option value="tous">🌐 TOUTES LES ÉQUIPES (Tout)</option>
+                                <option value="quebec">👑 Nordiques de Québec</option>
+                                <option value="stockholm">🛡️ Viking de Stockholm</option>
+                                <option value="montreal">🔵 Canadiens de Montréal</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-purple-400 font-bold block mb-1 uppercase">Filtrer par Position</label>
+                            <select id="hub-filtre-pos" onchange="filtrerHubCentral()" class="bg-slate-900 border-2 border-purple-400 text-sky-100 font-bold p-2 rounded-xl text-xs shadow-lg outline-none cursor-pointer">
+                                <option value="tous">📋 Toutes les Positions</option>
+                                <option value="C">⚔️ Centres (C)</option>
+                                <option value="ailiers">⚡ Ailiers (AG / AD)</option>
+                                <option value="D">🛡️ Défenseurs (D)</option>
+                                <option value="G">🥅 Gardiens (G)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABLEAU COMPARATIF COMPLET ET FLUIDE -->
+                <div class="bg-black/90 p-4 rounded-2xl border border-sky-500/40 shadow-2xl overflow-x-auto">
+                    <table class="w-full text-left text-xs whitespace-nowrap">
+                        <thead class="bg-zinc-950 text-sky-300 uppercase text-[10px] border-b border-sky-900/60">
+                            <tr>
+                                <th class="p-3">Joueur & Équipe</th>
+                                <th class="p-3 text-center">Pos</th>
+                                <th class="p-3 text-center">Moy</th>
+                                <th class="p-3 text-center">Patin</th>
+                                <th class="p-3 text-center">Tir</th>
+                                <th class="p-3 text-center">Passe</th>
+                                <th class="p-3 text-center">Physique</th>
+                                <th class="p-3 text-center">Poignet</th>
+                                <th class="p-3 text-center">Frappe</th>
+                                <th class="p-3 text-center">Échec</th>
+                                <th class="p-3">Lien DG / Multi-Position 🔗</th>
+                                <th class="p-3 text-center text-purple-400">Modifier (Président 🔒)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-zinc-900 font-bold" id="table-hub-corps">
+                            <!-- Injecté par JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 2 : TRANSACTIONS -->
+        <!-- ========================================== -->
+        <div id="page-transactions" class="hidden space-y-6">
+            <div class="neon-card p-4 sm:p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="flex flex-wrap justify-between items-center gap-4 border-b border-sky-900/50 pb-4">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-black neon-title flex items-center gap-2">
+                            <i class="fa-solid fa-right-left text-sky-400"></i> Bureau des Transactions 2026
+                        </h2>
+                        <p class="text-xs text-sky-300/70">🔁 Glissez-déposez ou cliquez sur les joueurs pour alimenter la zone centrale éclairée.</p>
+                    </div>
+                    <div class="flex items-center gap-2 sm:gap-3">
+                        <span class="text-xs font-bold text-sky-300">🤝 Partenaire :</span>
+                        <select id="partenaire-change" onchange="changerPartenaire()" class="bg-slate-900 border-2 border-sky-400 text-sky-100 font-bold p-2 rounded-xl text-xs shadow-lg outline-none cursor-pointer hover:border-sky-300 transition">
+                            <option value="sto">👑 Viking de Stockholm (DG Anders)</option>
+                            <option value="mtl">🔵 Canadiens de Montréal (DG Hughes)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+                    <div class="lg:col-span-4 bg-black/80 p-4 rounded-2xl border border-sky-500/40 space-y-4 shadow-xl">
+                        <div class="border-b border-sky-500/30 pb-2 flex justify-between items-center">
+                            <h3 class="font-black text-sky-400 text-xs uppercase flex items-center gap-1.5"><i class="fa-solid fa-shield-halved"></i> Vos Joueurs (Québec)</h3>
+                            <span class="text-[10px] text-zinc-400">Cliquez pour ajouter</span>
+                        </div>
+                        <div class="space-y-3.5 max-h-[460px] overflow-y-auto pr-1" id="inventaire-local-joueurs"></div>
+                        <div class="pt-3 border-t border-zinc-900">
+                            <label class="block text-[11px] font-bold text-sky-400 mb-1.5 flex items-center gap-1"><i class="fa-solid fa-ticket"></i> Choix de Repêchage (Québec)</label>
+                            <div class="flex gap-2">
+                                <select id="select-choix-local" class="bg-black border border-sky-500/50 text-sky-100 text-xs rounded-xl p-2.5 w-full font-bold outline-none">
+                                    <option value="">-- Sélectionner un choix --</option>
+                                </select>
+                                <button onclick="ajouterChoixMenu('donne')" class="bg-gradient-to-r from-sky-500 to-blue-600 text-white font-black px-3.5 py-2 rounded-xl text-xs shrink-0 shadow">+ Ajouter</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-4 plateau-transfert-glow card-center-highlight p-4.5 rounded-2xl space-y-4 shadow-2xl relative overflow-hidden">
+                        <div class="border-b border-sky-500/40 pb-2.5 text-center bg-sky-500/10 -mx-4.5 -mt-4.5 p-3">
+                            <h3 class="font-black neon-title text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-arrow-right-arrow-left text-sky-400 animate-pulse"></i> ZONE D'ÉCHANGE CENTRALE
+                            </h3>
+                            <span class="text-[10px] text-sky-200 font-semibold block">Attributs clés & Potentiels dynamiques</span>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <span class="text-[11px] font-black text-sky-300 uppercase tracking-wide block flex items-center gap-1"><i class="fa-solid fa-upload"></i> VOUS DONNEZ :</span>
+                            <div class="box-donne-glow p-3 rounded-xl min-h-[120px] space-y-3" id="plateau-donne">
+                                <span class="text-[11px] text-sky-300/70 italic block text-center py-8 font-medium">Cliquez sur un joueur ou un choix pour transférer ici</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <span class="text-[11px] font-black text-purple-300 uppercase tracking-wide block flex items-center gap-1"><i class="fa-solid fa-download"></i> VOUS RECEVEZ :</span>
+                            <div class="box-recu-glow p-3 rounded-xl min-h-[120px] space-y-3" id="plateau-recu">
+                                <span class="text-[11px] text-purple-300/70 italic block text-center py-8 font-medium">Sélectionnez les cibles adverses pour transférer ici</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 space-y-2">
+                            <button onclick="soumettreOffre()" class="bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 text-white font-black py-3 rounded-xl text-xs w-full shadow-2xl tracking-wider text-sm flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> SOUMETTRE LA TRANSACTION
+                            </button>
+                            <button onclick="viderPlateau()" class="bg-zinc-950 hover:bg-zinc-900 text-sky-200 font-bold py-2 rounded-xl text-[11px] w-full border border-zinc-800">🗑️ Vider la Zone d'Échange</button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-4 bg-black/80 p-4 rounded-2xl border border-purple-500/40 space-y-4 shadow-xl">
+                        <div class="border-b border-purple-500/30 pb-2 flex justify-between items-center">
+                            <h3 class="font-black text-purple-400 text-xs uppercase" id="titre-col-adverse"><i class="fa-solid fa-user-shield mr-1"></i> Joueurs Stockholm</h3>
+                            <span class="text-[10px] text-zinc-400">Cliquez pour cibler</span>
+                        </div>
+                        <div class="space-y-3.5 max-h-[460px] overflow-y-auto pr-1" id="inventaire-adverse-joueurs"></div>
+                        <div class="pt-3 border-t border-zinc-900">
+                            <label class="block text-[11px] font-bold text-purple-400 mb-1.5 flex items-center gap-1"><i class="fa-solid fa-ticket"></i> Choix de Repêchage Adverses</label>
+                            <div class="flex gap-2">
+                                <select id="select-choix-adverse" class="bg-black border border-purple-500/50 text-sky-100 text-xs rounded-xl p-2.5 w-full font-bold outline-none">
+                                    <option value="">-- Sélectionner un choix --</option>
+                                </select>
+                                <button onclick="ajouterChoixMenu('recu')" class="bg-purple-600 hover:bg-purple-500 text-white font-black px-3.5 py-2 rounded-xl text-xs shrink-0 shadow">+ Ajouter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t-2 border-dashed border-sky-500/40 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-sky-500/20 flex items-center justify-center text-sky-400 font-black text-lg"><i class="fa-solid fa-vault"></i></div>
+                        <div>
+                            <h3 class="text-base font-black neon-title uppercase tracking-wider">💰 Masse Salariale & Plafond (83.5M $)</h3>
+                            <p class="text-xs text-sky-300/70">Conformité budgétaire en temps réel sur fond sombre.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black p-4 rounded-2xl border border-zinc-900 shadow-xl overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-zinc-950 text-sky-300 uppercase text-[10px]">
+                                <tr>
+                                    <th class="p-3">Équipe</th>
+                                    <th class="p-3 text-right">Masse Actuelle</th>
+                                    <th class="p-3 text-right">Masse Post-Transaction</th>
+                                    <th class="p-3 text-right">Espace Sous Plafond</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-900 font-bold">
+                                <tr>
+                                    <td class="p-3 text-sky-400 flex items-center gap-2"><i class="fa-solid fa-shield text-sky-500"></i> Nordiques de Québec</td>
+                                    <td class="p-3 text-right text-zinc-300">74,500,000 $</td>
+                                    <td class="p-3 text-right text-sky-100" id="masse-apres-local">74,500,000 $</td>
+                                    <td class="p-3 text-right text-emerald-400" id="diff-local">+9,000,000 $</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 text-purple-400 flex items-center gap-2"><i class="fa-solid fa-shield text-purple-500"></i> <span id="nom-equipe-adverse-tbl">Viking de Stockholm</span></td>
+                                    <td class="p-3 text-right text-zinc-300" id="masse-avant-adverse-val">72,100,000 $</td>
+                                    <td class="p-3 text-right text-sky-100" id="masse-apres-adverse">72,100,000 $</td>
+                                    <td class="p-3 text-right text-purple-300" id="diff-adverse">+11,400,000 $</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 2 : TRIOS & LAH -->
+        <!-- ========================================== -->
+        <div id="page-vestiaire" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="flex justify-between items-center border-b border-sky-900/50 pb-4">
+                    <div>
+                        <h2 class="text-2xl font-black neon-title flex items-center gap-2">
+                            <i class="fa-solid fa-shirt text-sky-400"></i> Gestion Complète des 4 Trios & Duos Défensifs
+                        </h2>
+                        <p class="text-xs text-sky-300/70">⚡ Assignez vos joueurs pour maximiser la chimie de l'équipe et la cote globale.</p>
+                    </div>
+                    <div class="bg-black border border-sky-500/40 px-4 py-2 rounded-xl text-center">
+                        <span class="text-[10px] text-sky-400 block uppercase font-bold">Cote Globale Alignement</span>
+                        <span id="cote-globale-alignement" class="text-lg font-black text-emerald-400">91.4 / 100</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- TRIO 1 -->
+                    <div class="bg-black p-4 rounded-2xl border border-sky-500/50 space-y-3 shadow-xl">
+                        <div class="flex justify-between items-center border-b border-zinc-900 pb-2">
+                            <span class="font-black text-xs text-sky-400 uppercase">🔥 TRIO #1 (Offensif Principal)</span>
+                            <span class="bg-emerald-500/20 text-emerald-400 font-black text-[10px] px-2 py-0.5 rounded" id="chimie-trio-1">Chimie : 98% ⚡</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-xs">
+                            <div>
+                                <label class="text-[9px] text-sky-400 font-bold block mb-1">AG</label>
+                                <select id="t1-ag" onchange="calculerCoteAlignement()" class="bg-zinc-950 border border-sky-500/40 text-sky-100 p-2 rounded-xl w-full text-xs font-bold outline-none">
+                                    <option value="Alexis Lafrenière">Alexis Lafrenière (AG - 81)</option>
+                                    <option value="Jean Béliveau">Jean Béliveau (C - 92)</option>
+                                    <option value="Guy Lafleur">Guy Lafleur (AD - 87)</option>
+                                    <option value="Serge Savard">Serge Savard (DD - 88)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-[9px] text-purple-400 font-bold block mb-1">CENTRE</label>
+                                <select id="t1-c" onchange="calculerCoteAlignement()" class="bg-zinc-950 border border-purple-500/40 text-sky-100 p-2 rounded-xl w-full text-xs font-bold outline-none">
+                                    <option value="Jean Béliveau" selected>Jean Béliveau (C - 92)</option>
+                                    <option value="Alexis Lafrenière">Alexis Lafrenière (AG - 81)</option>
+                                    <option value="Guy Lafleur">Guy Lafleur (AD - 87)</option>
+                                    <option value="Serge Savard">Serge Savard (DD - 88)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-[9px] text-sky-400 font-bold block mb-1">AD</label>
+                                <select id="t1-ad" onchange="calculerCoteAlignement()" class="bg-zinc-950 border border-sky-500/40 text-sky-100 p-2 rounded-xl w-full text-xs font-bold outline-none">
+                                    <option value="Guy Lafleur" selected>Guy Lafleur (AD - 87)</option>
+                                    <option value="Jean Béliveau">Jean Béliveau (C - 92)</option>
+                                    <option value="Alexis Lafrenière">Alexis Lafrenière (AG - 81)</option>
+                                    <option value="Serge Savard">Serge Savard (DD - 88)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TRIO 2 -->
+                    <div class="bg-black p-4 rounded-2xl border border-sky-500/30 space-y-3 shadow-xl">
+                        <div class="flex justify-between items-center border-b border-zinc-900 pb-2">
+                            <span class="font-black text-xs text-sky-300 uppercase">🛡️ TRIO #2 (Soutien & Contrôle)</span>
+                            <span class="bg-sky-500/20 text-sky-300 font-black text-[10px] px-2 py-0.5 rounded" id="chimie-trio-2">Chimie : 91%</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-xs">
+                            <div>
+                                <label class="text-[9px] text-sky-400 font-bold block mb-1">AG</label>
+                                <select id="t2-ag" onchange="calculerCoteAlignement()" class="bg-zinc-950 border border-zinc-800 text-sky-100 p-2 rounded-xl w-full text-xs font-bold outline-none">
+                                    <option value="Vétéran AG" selected>Vétéran AG (80)</option>
+                                    <option value="Alexis Lafrenière">Alexis Lafrenière (81)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-[9px] text-purple-400 font-bold block mb-1">CENTRE</label>
+                                <select id="t2-c" onchange="calculerCoteAlignement()" class="bg-zinc-950 border border-zinc-800 text-sky-100 p-2 rounded-xl w-full text-xs font-bold outline-none">
+                                    <option value="Centre #2" selected>Centre #2 (82)</option>
+                                    <option value="Jean Béliveau">Jean Béliveau (92)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-[9px] text-sky-400 font-bold block mb-1">AD</label>
+                                <select id="t2-ad" onchange="calculerCoteAlignement()" class="bg-zinc-950 border border-zinc-800 text-sky-100 p-2 rounded-xl w-full text-xs font-bold outline-none">
+                                    <option value="Ailier #2" selected>Ailier #2 (79)</option>
+                                    <option value="Guy Lafleur">Guy Lafleur (87)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TRIO 3 -->
+                    <div class="bg-black p-4 rounded-2xl border border-zinc-900 space-y-3 shadow-xl">
+                        <div class="flex justify-between items-center border-b border-zinc-900 pb-2">
+                            <span class="font-black text-xs text-zinc-400 uppercase">⚡ TRIO #3 (Énergie & Robustesse)</span>
+                            <span class="bg-zinc-800 text-zinc-300 font-black text-[10px] px-2 py-0.5 rounded">Chimie : 85%</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-xs">
+                            <div class="bg-zinc-950 p-2 text-center rounded-xl border border-zinc-900"><span class="text-[9px] text-zinc-400 block">AG #3</span><span class="font-bold text-sky-100">Spécialiste 4e</span></div>
+                            <div class="bg-zinc-950 p-2 text-center rounded-xl border border-zinc-900"><span class="text-[9px] text-zinc-400 block">C #3</span><span class="font-bold text-sky-100">Centre Déf.</span></div>
+                            <div class="bg-zinc-950 p-2 text-center rounded-xl border border-zinc-900"><span class="text-[9px] text-zinc-400 block">AD #3</span><span class="font-bold text-sky-100">Robuste AD</span></div>
+                        </div>
+                    </div>
+
+                    <!-- TRIO 4 -->
+                    <div class="bg-black p-4 rounded-2xl border border-zinc-900 space-y-3 shadow-xl">
+                        <div class="flex justify-between items-center border-b border-zinc-900 pb-2">
+                            <span class="font-black text-xs text-zinc-400 uppercase">🧊 TRIO #4 (Protection & Boucher)</span>
+                            <span class="bg-zinc-800 text-zinc-300 font-black text-[10px] px-2 py-0.5 rounded">Chimie : 82%</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-xs">
+                            <div class="bg-zinc-950 p-2 text-center rounded-xl border border-zinc-900"><span class="text-[9px] text-zinc-400 block">AG #4</span><span class="font-bold text-sky-100">Énergique 1</span></div>
+                            <div class="bg-zinc-950 p-2 text-center rounded-xl border border-zinc-900"><span class="text-[9px] text-zinc-400 block">C #4</span><span class="font-bold text-sky-100">Rouage 4</span></div>
+                            <div class="bg-zinc-950 p-2 text-center rounded-xl border border-zinc-900"><span class="text-[9px] text-zinc-400 block">AD #4</span><span class="font-bold text-sky-100">Bagarreur</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t-2 border-dashed border-emerald-500/30 space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-4">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg font-black shadow"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div>
+                                <h3 class="text-lg font-black text-emerald-400 flex items-center gap-2">
+                                    Club-École LAH <span class="text-xs bg-black px-2 py-0.5 rounded text-sky-200 font-normal border border-zinc-800">Section Espoirs</span>
+                                </h3>
+                                <p class="text-xs text-zinc-400">🎓 Suivi de la progression et développement des espoirs.</p>
+                            </div>
+                        </div>
+                        <button onclick="simulerXPois()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-4 py-2 rounded-xl text-xs shadow flex items-center gap-2">
+                            <i class="fa-solid fa-bolt"></i> Simuler 20 Matchs (XP+)
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="liste-prospects-ferme"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 3 : STRATÉGIE, FINANCES & STATS -->
+        <!-- ========================================== -->
+        <div id="page-strategie" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="flex items-center gap-2.5 border-b border-zinc-900 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-lg font-black shadow"><i class="fa-solid fa-chess-board"></i></div>
+                    <div>
+                        <h2 class="text-xl font-black text-sky-400">Bureau Tactique & Style de l'Entraîneur</h2>
+                        <p class="text-xs text-sky-200">♟️ Choisissez l'orientation stratégique de votre équipe.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div onclick="choisirTactique('pression')" id="tac-pression" class="bg-black p-4 rounded-2xl border-2 border-sky-500 cursor-pointer space-y-2 shadow-lg transition">
+                        <span class="text-2xl">⚡</span>
+                        <h3 class="font-bold text-sky-100 text-sm">Pression Intense (Forecheck)</h3>
+                        <p class="text-[11px] text-zinc-400">+10% chances de marquer en contre-attaque.</p>
+                    </div>
+                    <div onclick="choisirTactique('trappe')" id="tac-trappe" class="bg-black p-4 rounded-2xl border border-zinc-900 cursor-pointer space-y-2 shadow-lg transition">
+                        <span class="text-2xl">🛡️</span>
+                        <h3 class="font-bold text-sky-100 text-sm">Bloc Défensif (Trappe Neutre)</h3>
+                        <p class="text-[11px] text-zinc-400">-15% de buts accordés.</p>
+                    </div>
+                    <div onclick="choisirTactique('physique')" id="tac-physique" class="bg-black p-4 rounded-2xl border border-zinc-900 cursor-pointer space-y-2 shadow-lg transition">
+                        <span class="text-2xl">💥</span>
+                        <h3 class="font-bold text-sky-100 text-sm">Jeu Physique Intensif</h3>
+                        <p class="text-[11px] text-zinc-400">Augmente les pénalités adverses.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 4 : NÉGOS, AGENTS LIBRES & DIRECTION -->
+        <!-- ========================================== -->
+        <div id="page-direction" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
+                <div class="border-b border-zinc-900 pb-4 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-black neon-title flex items-center gap-2"><i class="fa-solid fa-file-contract text-sky-400"></i> Centre de Négociation & Prolongations</h2>
+                        <p class="text-xs text-sky-300/70">✍️ Gérez les extensions de contrat de vos joueurs vedettes.</p>
+                    </div>
+                </div>
+                <div class="space-y-4" id="liste-negos-contrats"></div>
+            </div>
+
+            <div class="neon-card p-6 rounded-2xl border border-sky-500/40 space-y-6 shadow-2xl">
+                <div class="flex justify-between items-center border-b border-zinc-900 pb-4">
+                    <div>
+                        <h2 class="text-xl font-black text-sky-400 flex items-center gap-2"><i class="fa-solid fa-user-tie text-sky-400"></i> Bureau des Agents Libres & Marché UFA/RFA</h2>
+                        <p class="text-xs text-sky-200">📋 Joueurs autonomes disponibles sans contrat actif.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="liste-agents-libres-complet"></div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 5 : DIRECT LIVE & MATCHS -->
+        <!-- ========================================== -->
+        <div id="page-matchs" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl shadow-2xl space-y-6">
+                <!-- RAPPORT D'AVANT-MATCH & MOMENTUM RELIÉ À L'ALIGNEMENT -->
+                <div class="bg-black p-5 rounded-2xl border-2 border-sky-500/60 shadow-2xl space-y-4">
+                    <div class="flex justify-between items-center border-b border-sky-900/60 pb-3">
+                        <h3 class="text-sm font-black text-sky-300 uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-emerald-400"></i> Rapport d'Avant-Match & Probabilités de Victoire
+                        </h3>
+                        <span class="bg-emerald-500/20 text-emerald-400 font-black text-xs px-3 py-1 rounded-full border border-emerald-500/40" id="badge-probabilite-victoire">Victoire Probable (68%)</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-zinc-950 p-3.5 rounded-xl border border-zinc-900 space-y-1">
+                            <span class="text-[10px] text-zinc-400 block font-bold">Cote de l'Alignement (Trios)</span>
+                            <span class="text-lg font-black text-sky-100" id="avant-match-cote">91.4 / 100</span>
+                            <span class="text-[9px] text-emerald-400 block">Excellente répartition offensive</span>
+                        </div>
+                        <div class="bg-zinc-950 p-3.5 rounded-xl border border-zinc-900 space-y-1">
+                            <span class="text-[10px] text-zinc-400 block font-bold">Momentum / Forme Récente</span>
+                            <span class="text-lg font-black text-amber-400">🔥 Sur une séquence de 4 victoires</span>
+                            <span class="text-[9px] text-sky-300 block">Moral du vestiaire au zénith</span>
+                        </div>
+                        <div class="bg-zinc-950 p-3.5 rounded-xl border border-zinc-900 space-y-1">
+                            <span class="text-[10px] text-zinc-400 block font-bold">Avantage Tactique / Adversaire</span>
+                            <span class="text-lg font-black text-purple-400">Forecheck Supérieur</span>
+                            <span class="text-[9px] text-zinc-300 block">Face au Viking de Stockholm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center border-b border-sky-900/50 pb-4">
+                    <div>
+                        <h2 class="text-2xl font-black neon-title flex items-center gap-2"><i class="fa-solid fa-hockey-puck text-sky-400"></i> Direct Live & Match Simulator</h2>
+                        <p class="text-xs text-sky-300/70">🏒 Suivez le match en temps réel avec fil de jeu interactif.</p>
+                    </div>
+                    <button onclick="simulerActionLive()" class="bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-black px-4 py-2 rounded-xl text-xs shadow flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i> Simuler Prochaine Séquence
+                    </button>
+                </div>
+
+                <div class="bg-black p-6 rounded-2xl border-2 border-sky-500/50 shadow-2xl space-y-6 relative overflow-hidden live-pulse">
+                    <div class="anim-puck"></div>
+                    <div class="flex flex-wrap justify-between items-center gap-4 relative z-10">
+                        <div class="text-center sm:text-left">
+                            <span class="text-[10px] text-sky-400 font-bold uppercase block">Domicile</span>
+                            <h3 class="text-lg font-black text-sky-100">Nordiques de Québec</h3>
+                            <span class="text-xs text-zinc-400">Tirs : <strong id="tirs-quebec" class="text-sky-100">28</strong></span>
+                        </div>
+                        <div class="text-center bg-zinc-950 px-8 py-4 rounded-2xl border border-sky-500/40 shadow-inner">
+                            <div class="text-4xl font-black neon-title tracking-widest"><span id="score-q">4</span> - <span id="score-s">2</span></div>
+                            <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider block mt-1" id="temps-match">3e Période (14:22)</span>
+                        </div>
+                        <div class="text-center sm:text-right">
+                            <span class="text-[10px] text-purple-400 font-bold uppercase block">Visiteur</span>
+                            <h3 class="text-lg font-black text-sky-100">Viking de Stockholm</h3>
+                            <span class="text-xs text-zinc-400">Tirs : <strong id="tirs-stockholm" class="text-sky-100">22</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 6 : CASINO DARK CYBER & RESULTATS GÉANTS -->
+        <!-- ========================================== -->
+                <!-- ========================================== -->
+        <!-- ONGLET 6 : CASINO CYBER & MINI-JEU LIVE -->
+        <!-- ========================================== -->
+                        <!-- ========================================== -->
+        <!-- ONGLET 9 : CASINO CYBER & MINI-JEU LIVE (MODULAIRE & ÉPURÉ) -->
+        <!-- ========================================== -->
+        <div id="page-boutique" class="hidden space-y-6">
+            <!-- En-tête de la section -->
+            <div class="relative bg-gradient-to-r from-slate-900 via-purple-950 to-indigo-950 p-6 rounded-3xl border-2 border-sky-400 shadow-[0_0_50px_rgba(56,189,248,0.2)] flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <span class="bg-sky-500 text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow">Hub Arcade & QG</span>
+                    <h2 class="text-3xl font-black neon-title mt-1">Casino Dark Cyber & QG du DG</h2>
+                    <p class="text-xs text-sky-200/80 mt-1">Un sous-onglet à la fois pour une expérience fluide et sans surcharge.</p>
+                </div>
+                <div class="bg-black/90 border-2 border-sky-400 p-4 rounded-2xl text-center shadow-xl min-w-[160px]">
+                    <span class="text-[10px] text-sky-300 block uppercase font-black">SOLDE DU DG</span>
+                    <span id="solde-ep-boutique" class="text-2xl font-black neon-title">4,500 CC</span>
+                </div>
+            </div>
+
+            <!-- Boutons de Sous-Onglets (Navigation isolée) -->
+            <div class="flex flex-wrap gap-2 bg-slate-900/90 p-2 rounded-2xl border border-sky-500/30">
+                <button onclick="changerSousOngletCasino('minijeu')" id="btn-sub-minijeu" class="flex-1 min-w-[140px] py-2.5 px-4 rounded-xl text-xs font-black bg-sky-600 text-white shadow-lg transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bullseye"></i> 🎯 Tirs de Précision
+                </button><button onclick="changerSousOngletCasino('roulette')" id="btn-sub-roulette" class="flex-1 min-w-[140px] py-2.5 px-4 rounded-xl text-xs font-black bg-zinc-950 text-zinc-400 hover:text-white transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dice"></i> 🎰 Roulette Lazer
+                </button><button onclick="changerSousOngletCasino('boutique')" id="btn-sub-boutique" class="flex-1 min-w-[140px] py-2.5 px-4 rounded-xl text-xs font-black bg-zinc-950 text-zinc-400 hover:text-white transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-store"></i> 🛍️ Bureau & Déco
+                </button>
+            </div>
+
+            <!-- SOUS-SECTION 1 : TIRS DE PRÉCISION (Isolé) -->
+            <div id="subpage-minijeu" class="space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                    <div class="lg:col-span-7 bg-black/95 p-6 rounded-3xl border-2 border-purple-500/60 shadow-2xl space-y-6 flex flex-col justify-between">
+                        <div class="space-y-2 border-b border-purple-500/30 pb-4">
+                            <div class="flex items-center justify-between">
+                                <span class="bg-purple-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase">Mini-Jeu Live</span>
+                                <span class="text-xs text-purple-300 font-mono">🏒 Duel face au Gardien</span>
+                            </div>
+                            <h3 class="text-xl font-black text-purple-200">Tirs de Précision en Direct</h3>
+                            <p class="text-xs text-zinc-300">Choisissez votre angle de tir. Déjouez le gardien virtuel pour empocher des Crédits Cyber (CC) !</p>
+                        </div>
+
+                        <div class="bg-zinc-950 p-6 rounded-2xl border border-zinc-900 text-center space-y-4">
+                            <div id="statut-minijeu" class="text-xs font-black text-sky-300">Le gardien est en position... À vous de jouer !</div>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button onclick="tirerMiniJeu('gauche')" class="bg-sky-600 hover:bg-sky-500 text-white text-xs font-black py-3.5 px-2 rounded-xl shadow transition transform hover:scale-105">🎯 Gauche</button>
+                                <button onclick="tirerMiniJeu('centre')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-black py-3.5 px-2 rounded-xl shadow transition transform hover:scale-105">🎯 Centre</button>
+                                <button onclick="tirerMiniJeu('droite')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black py-3.5 px-2 rounded-xl shadow transition transform hover:scale-105">🎯 Droite</button>
+                            </div>
+                        </div>
+
+                        <div id="resultat-minijeu-box" class="hidden bg-purple-950/60 p-4 rounded-2xl border border-purple-500/50 text-xs font-bold text-purple-200 text-center animate-pulse"></div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-black/90 p-6 rounded-3xl border border-sky-500/40 space-y-4 flex flex-col justify-center text-center">
+                        <span class="text-5xl">🏆</span>
+                        <h4 class="font-black text-sky-200 text-base">Règlement du Mini-Jeu</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed">Chaque tir réussi vous rapporte entre 50 et 150 CC. Utilisez vos crédits pour acheter des décorations pour votre bureau exécutif.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOUS-SECTION 2 : ROULETTE LAZER (Isolé & Caché par défaut) -->
+            <div id="subpage-roulette" class="hidden space-y-6">
+                <div class="bg-black/90 p-6 sm:p-8 rounded-3xl border border-sky-500/40 text-center space-y-6 shadow-2xl relative max-w-2xl mx-auto">
+                    <div>
+                        <h3 class="text-xl font-black text-sky-300 mb-1 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-dice text-sky-400"></i> Roulette Lazer Casino
+                        </h3>
+                        <p class="text-xs text-sky-200/70">Tentez votre chance avec la roulette sécurisée ou high-roller.</p>
+                    </div>
+
+                    <div class="flex justify-center gap-2 bg-zinc-950 p-1.5 rounded-xl border border-zinc-900 max-w-md mx-auto">
+                        <button onclick="selectionnerModeGamble('safe')" id="btn-mode-safe" class="w-1/2 py-2 rounded-lg text-xs font-black bg-emerald-600 text-white shadow">
+                            🛡️ Mode Sécurisé (50 CC)
+                        </button>
+                        <button onclick="selectionnerModeGamble('risque')" id="btn-mode-risque" class="w-1/2 py-2 rounded-lg text-xs font-black bg-zinc-900 text-zinc-400 hover:text-white">
+                            💥 High-Roller (200 CC)
+                        </button>
+                    </div>
+
+                    <div class="roue-synthwave-container my-4">
+                        <div class="absolute top-0 z-30 w-0 h-0 border-x-8 border-x-transparent border-t-[22px] border-t-sky-400 filter drop-shadow-[0_0_12px_#38bdf8]" style="left: calc(50% - 8px);"></div>
+                        <div id="roue-visuel-casino" class="roue-synthwave-inner relative flex items-center justify-center">
+                            <div class="w-20 h-20 rounded-full bg-black border-4 border-sky-500 flex flex-col items-center justify-center text-center p-1 shadow-2xl z-20">
+                                <span class="text-[8px] text-sky-400 uppercase font-black" id="label-mode-mise">MISE: 50 CC</span>
+                                <span id="roue-statut-casino" class="text-[10px] font-black text-sky-100 mt-0.5">SPIN 🎲</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="lancerRoueCasino()" class="bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-indigo-500 text-white font-black px-6 py-3.5 rounded-2xl text-xs w-full shadow-2xl tracking-wider">
+                        TOURNER LA ROULETTE LAZER ! 🎰
+                    </button>
+                </div>
+            </div>
+
+            <!-- SOUS-SECTION 3 : BUREAU & BOUTIQUE (Isolé & Caché par défaut) -->
+            <div id="subpage-boutique" class="hidden space-y-6">
+                <div class="bg-black/90 p-6 sm:p-8 rounded-3xl border-2 border-sky-500/40 shadow-2xl space-y-6">
+                    <div class="border-b border-sky-500/30 pb-4 flex flex-wrap justify-between items-center gap-4">
+                        <div>
+                            <h3 class="text-xl font-black text-sky-200 flex items-center gap-2">
+                                <i class="fa-solid fa-store text-sky-400"></i> Bureau du DG & Catalogue de Décoration
+                            </h3>
+                            <p class="text-xs text-sky-300/70">Personnalisez votre bureau exécutif avec vos Crédits Cyber.</p>
+                        </div>
+                        <div class="bg-sky-500/20 text-sky-300 px-3.5 py-1.5 rounded-xl border border-sky-500/40 text-xs font-black">
+                            Bureau Actif : <span id="nom-theme-actuel">Style Cyber-Futuriste Holographique</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-slate-900/90 p-4 rounded-2xl border border-sky-500/30 flex items-center gap-3.5 shadow-inner">
+                            <span class="text-4xl" id="deco-trophee-visuel">🏆</span>
+                            <div>
+                                <span class="text-[10px] text-sky-400 font-extrabold block uppercase">Trophée Exposé</span>
+                                <span class="text-xs font-black text-sky-100" id="texte-trophee-actif">Coupe de la Ligue 2025</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/90 p-4 rounded-2xl border border-purple-500/30 flex items-center gap-3.5 shadow-inner">
+                            <span class="text-4xl" id="deco-mascotte-visuel">🦉</span>
+                            <div>
+                                <span class="text-[10px] text-purple-400 font-extrabold block uppercase">Compagnon VIP</span>
+                                <span class="text-xs font-black text-sky-100" id="texte-mascotte-actif">Hibou Cyber (Veille)</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/90 p-4 rounded-2xl border border-emerald-500/30 flex items-center gap-3.5 shadow-inner">
+                            <span class="text-4xl" id="deco-eclairage-visuel">💡</span>
+                            <div>
+                                <span class="text-[10px] text-emerald-400 font-extrabold block uppercase">Ambiance</span>
+                                <span class="text-xs font-black text-sky-100" id="texte-eclairage-actif">Néons Bleus Cyan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                        <div class="bg-gradient-to-b from-slate-900 to-black p-5 rounded-2xl border border-sky-500/35 space-y-4 shadow-xl flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-start"><span class="text-4xl">🏛️</span><span class="bg-sky-500/20 text-sky-300 font-black text-xs px-2.5 py-1 rounded-full border border-sky-500/30">500 CC</span></div>
+                                <h4 class="font-black text-sky-100 text-base">Bureau Bois Rétro Classique</h4>
+                                <p class="text-xs text-zinc-400">Ambiance chaleureuse des grands DG des années 70.</p>
+                            </div>
+                            <button onclick="acheterCosmetique(500, 'Bureau Bois Rétro Classique', 'Style Rétro Bois Massif')" class="bg-sky-600 hover:bg-sky-500 text-white font-black w-full py-3 rounded-xl text-xs shadow-lg transition">Acquérir le Style</button>
+                        </div>
+
+                        <div class="bg-gradient-to-b from-slate-900 to-black p-5 rounded-2xl border border-purple-500/35 space-y-4 shadow-xl flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-start"><span class="text-4xl">🐕</span><span class="bg-purple-500/20 text-purple-300 font-black text-xs px-2.5 py-1 rounded-full border border-purple-500/30">1,000 CC</span></div>
+                                <h4 class="font-black text-sky-100 text-base">Chien Mascotte (Bouledogue)</h4>
+                                <p class="text-xs text-zinc-400">Dort paisiblement sous votre bureau pendant vos transactions.</p>
+                            </div>
+                            <button onclick="acheterCosmetique(1000, 'Chien Mascotte', 'Bouledogue Endormi', 'mascotte')" class="bg-purple-600 hover:bg-purple-500 text-white font-black w-full py-3 rounded-xl text-xs shadow-lg transition">Adopter le Compagnon</button>
+                        </div>
+
+                        <div class="bg-gradient-to-b from-slate-900 to-black p-5 rounded-2xl border border-amber-500/35 space-y-4 shadow-xl flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-start"><span class="text-4xl">🌟</span><span class="bg-amber-500/20 text-amber-300 font-black text-xs px-2.5 py-1 rounded-full border border-amber-500/30">1,500 CC</span></div>
+                                <h4 class="font-black text-sky-100 text-base">Bannière de Championnat Or</h4>
+                                <p class="text-xs text-zinc-400">Accrochée au mur de votre bureau pour commémorer vos triomphes.</p>
+                            </div>
+                            <button onclick="acheterCosmetique(1500, 'Bannière Or', 'Bannière Championnat Or', 'trophee')" class="bg-amber-600 hover:bg-amber-500 text-black font-black w-full py-3 rounded-xl text-xs shadow-lg transition">Exposer la Bannière</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page-presse" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl space-y-6 shadow-2xl">
+                <div class="border-b border-zinc-900 pb-4">
+                    <h2 class="text-2xl font-black neon-title flex items-center gap-2"><i class="fa-solid fa-newspaper text-sky-400"></i> La Gazette Officielle LDC 2026</h2>
+                    <p class="text-xs text-sky-300/70">📰 Actualités de la ligue et rapports de scouts.</p>
+                </div>
+                <div class="bg-black p-5 rounded-2xl border border-sky-500/30 space-y-3 shadow-xl">
+                    <span class="bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded text-[10px] font-black">À LA UNE • 14 NOVEMBRE 2026</span>
+                    <h3 class="text-lg font-black text-sky-100">Québec domine la conférence après une éclatante victoire 4-2 !</h3>
+                    <p class="text-xs text-zinc-300">Portés par Jean Béliveau au centre et Serge Savard en défensive, les Nordiques s'imposent en patron.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 8 : STATS & POINTEURS -->
+        <!-- ========================================== -->
+        <div id="page-stats" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl space-y-6 shadow-2xl">
+                <div class="border-b border-sky-900/50 pb-4 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-black neon-title flex items-center gap-2"><i class="fa-solid fa-chart-bar text-sky-400"></i> Tableau des Pointeurs & Statistiques LDC</h2>
+                        <p class="text-xs text-sky-300/70">📊 Classement officiel mis à jour en temps réel après chaque match.</p>
+                    </div>
+                </div>
+                <div class="bg-black p-4 rounded-2xl border border-sky-500/30 shadow-xl overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-zinc-950 text-sky-300 uppercase text-[10px]">
+                            <tr>
+                                <th class="p-3">Rang & Joueur</th>
+                                <th class="p-3">Équipe</th>
+                                <th class="p-3 text-center">MJ</th>
+                                <th class="p-3 text-center">B</th>
+                                <th class="p-3 text-center">P</th>
+                                <th class="p-3 text-center font-black text-sky-400">PTS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-zinc-900 font-bold" id="table-pointeurs-corps">
+                            <tr>
+                                <td class="p-3 text-sky-100 flex items-center gap-2">🥇 <span>Jean Béliveau</span></td>
+                                <td class="p-3 text-sky-400">Nordiques</td>
+                                <td class="p-3 text-center text-zinc-300">18</td>
+                                <td class="p-3 text-center text-zinc-300">14</td>
+                                <td class="p-3 text-center text-zinc-300">22</td>
+                                <td class="p-3 text-center text-emerald-400 font-black">36</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 text-sky-100 flex items-center gap-2">🥈 <span>Guy Lafleur</span></td>
+                                <td class="p-3 text-sky-400">Nordiques</td>
+                                <td class="p-3 text-center text-zinc-300">18</td>
+                                <td class="p-3 text-center text-zinc-300">18</td>
+                                <td class="p-3 text-center text-zinc-300">15</td>
+                                <td class="p-3 text-center text-emerald-400 font-black">33</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 text-sky-100 flex items-center gap-2">🥉 <span>Mats Sundin</span></td>
+                                <td class="p-3 text-purple-400">Stockholm</td>
+                                <td class="p-3 text-center text-zinc-300">17</td>
+                                <td class="p-3 text-center text-zinc-300">12</td>
+                                <td class="p-3 text-center text-zinc-300">18</td>
+                                <td class="p-3 text-center text-emerald-400 font-black">30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 9 : SIMULATEUR DE LOTERIE DU DRAFT -->
+        <!-- ========================================== -->
+        <div id="page-loterie" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl space-y-6 shadow-2xl text-center">
+                <div class="border-b border-sky-900/50 pb-4 text-left">
+                    <h2 class="text-2xl font-black neon-title flex items-center gap-2"><i class="fa-solid fa-trophy text-amber-400"></i> Loterie du Repêchage Amateur 2027</h2>
+                    <p class="text-xs text-sky-300/70">🎰 Simulation officielle des boules de loto pour le 1er choix au total.</p>
+                </div>
+                <div class="py-8 space-y-6">
+                    <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-amber-500 to-purple-600 flex items-center justify-center text-5xl shadow-[0_0_40px_rgba(245,158,11,0.5)] animate-bounce" id="loto- boule-anim">
+                        🎱
+                    </div>
+                    <div id="loto-resultat-box" class="bg-black p-6 rounded-2xl border-2 border-amber-500 max-w-lg mx-auto shadow-2xl">
+                        <span class="text-xs text-amber-400 font-black uppercase tracking-wider block mb-1">GAGNANT DU 1ER CHOIX 2027</span>
+                        <h3 id="loto-gagnant-nom" class="text-2xl font-black text-white">Prêt à lancer la loterie !</h3>
+                        <p id="loto-gagnant-desc" class="text-xs text-sky-200 mt-2">Cliquez ci-dessous pour brasser les boules et révéler la franchise chanceuse.</p>
+                    </div>
+                    <button onclick="lancerLoterieDraft()" class="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-black px-8 py-4 rounded-2xl text-sm shadow-2xl tracking-wider">
+                        🎲 LANCER LA LOTERIE DU DRAFT !
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 10 : STAFF & ENTRAÎNEURS -->
+        <!-- ========================================== -->
+        <div id="page-staff" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl space-y-6 shadow-2xl">
+                <div class="border-b border-sky-900/50 pb-4">
+                    <h2 class="text-2xl font-black neon-title flex items-center gap-2"><i class="fa-solid fa-user-gear text-purple-400"></i> Centre de Gestion du Staff & Entraîneurs</h2>
+                    <p class="text-xs text-sky-300/70">🧠 Embauchez des experts pour procurer des bonus passifs à votre organisation.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="liste-staff-container">
+                    <div class="bg-black p-4 rounded-2xl border border-purple-500/40 space-y-3 shadow-xl">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-sky-100 text-xs">Scotty Bowman (Entraîneur-Chef)</span>
+                            <span class="bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded text-[10px] font-black">Légende</span>
+                        </div>
+                        <p class="text-[11px] text-zinc-300">Bonus passif : <strong class="text-emerald-400">+10% de victoires simulées</strong> & discipline tactique.</p>
+                        <span class="text-xs text-sky-400 font-bold block">Salaire : 2.5M $ / an</span>
+                        <button onclick="embaucherStaff('Scotty Bowman')" class="bg-purple-600 hover:bg-purple-500 text-white font-black w-full py-2 rounded-xl text-xs shadow">Embaucher</button>
+                    </div>
+                    <div class="bg-black p-4 rounded-2xl border border-sky-500/40 space-y-3 shadow-xl">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-sky-100 text-xs">Dr. Michael Baribeau (Prép. Physique)</span>
+                            <span class="bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded text-[10px] font-black">Élite</span>
+                        </div>
+                        <p class="text-[11px] text-zinc-300">Bonus passif : <strong class="text-emerald-400">-50% de risques de blessure</strong> à long terme.</p>
+                        <span class="text-xs text-sky-400 font-bold block">Salaire : 1.2M $ / an</span>
+                        <button onclick="embaucherStaff('Dr. Michael Baribeau')" class="bg-sky-600 hover:bg-sky-500 text-white font-black w-full py-2 rounded-xl text-xs shadow">Embaucher</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 11 : AMPHITHÉÂTRE & FINANCES -->
+        <!-- ========================================== -->
+        <div id="page-arena" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl space-y-6 shadow-2xl">
+                <div class="border-b border-sky-900/50 pb-4">
+                    <h2 class="text-2xl font-black neon-title flex items-center gap-2"><i class="fa-solid fa-building text-emerald-400"></i> Aménagement de l'Amphithéâtre & Revenus</h2>
+                    <p class="text-xs text-sky-300/70">🏟️ Optimisez le prix des billets et les loges corporatives pour maximiser les profits.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-black p-5 rounded-2xl border border-emerald-500/40 space-y-4 shadow-xl">
+                        <h3 class="font-bold text-emerald-400 text-sm flex items-center gap-2"><i class="fa-solid fa-ticket"></i> Billetterie & Sièges</h3>
+                        <div class="space-y-2">
+                            <label class="block text-xs text-sky-200">Prix du billet régulier : <strong id="prix-billet-val" class="text-sky-400">45 $</strong></label>
+                            <input type="range" min="20" max="100" value="45" oninput="changerPrixBillet(this.value)" class="w-full accent-emerald-500">
+                        </div>
+                        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-900 flex justify-between items-center text-xs">
+                            <span class="text-zinc-300">Taux de remplissage estimé :</span>
+                            <span class="text-emerald-400 font-black" id="taux-remplissage">98% (Guichets fermés)</span>
+                        </div>
+                    </div>
+                    <div class="bg-black p-5 rounded-2xl border border-sky-500/40 space-y-4 shadow-xl">
+                        <h3 class="font-bold text-sky-400 text-sm flex items-center gap-2"><i class="fa-solid fa-gem"></i> Loges Corporatives & Investissements</h3>
+                        <p class="text-xs text-zinc-300">Améliorez le confort VIP pour générer des revenus d'exploitation automatiques.</p>
+                        <button onclick="ameliorerLoges()" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-black font-black w-full py-3 rounded-xl text-xs shadow-lg">
+                            ✨ Rénover les Loges VIP (1,500,000 $)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 12 : RUMEURS HOTSTOVE -->
+        <!-- ========================================== -->
+        <div id="page-rumeurs" class="hidden space-y-6">
+            <div class="neon-card p-6 rounded-2xl space-y-6 shadow-2xl">
+                <div class="border-b border-sky-900/50 pb-4">
+                    <h2 class="text-2xl font-black neon-title flex items-center gap-2"><i class="fa-solid fa-bullhorn text-rose-400"></i> Fil Hotstove & Rumeurs de Transaction</h2>
+                    <p class="text-xs text-sky-300/70">🗣️ Ce que les journalistes et analystes de la ligue murmurent sur le web.</p>
+                </div>
+                <div class="space-y-3" id="flux-rumeurs-container">
+                    <div class="bg-black p-4 rounded-2xl border border-rose-500/30 space-y-2 shadow-xl">
+                        <div class="flex justify-between items-center text-[10px] text-zinc-400">
+                            <span class="text-rose-400 font-black">📱 @InsiderLDC_News</span>
+                            <span>Il y a 12 minutes</span>
+                        </div>
+                        <p class="text-xs text-sky-100">"Des bruits de couloir insistants placent les Nordiques de Québec sur les rangs pour acquérir un défenseur étoile avant la date limite ! Ça bouge dans les coulisses."</p>
+                    </div>
+                    <div class="bg-black p-4 rounded-2xl border border-sky-500/30 space-y-2 shadow-xl">
+                        <div class="flex justify-between items-center text-[10px] text-zinc-400">
+                            <span class="text-sky-400 font-black">🎙️ Pierre LeBrun (RDS)</span>
+                            <span>Il y a 1 heure</span>
+                        </div>
+                        <p class="text-xs text-sky-100">"La gestion de la masse salariale par le DG de Québec est magistrale. Ils gardent une flexibilité redoutable sous le plafond."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- MODAL MESSAGERIE (GRIS ARDOISE .NEON-CARD) -->
+    <div id="modal-chat" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="neon-card border border-sky-500/50 w-full max-w-lg rounded-2xl p-4 sm:p-5 space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-sky-500/30 pb-3 bg-sky-500/10 -mx-5 -mt-5 p-4 rounded-t-2xl">
+                <h3 class="font-black text-sky-300 text-sm flex items-center gap-2"><i class="fa-solid fa-comments"></i> Négociation Directe Inter-DG</h3>
+                <button onclick="fermerModalChat()" class="text-sky-300 hover:text-white font-bold bg-zinc-900/80 w-7 h-7 rounded-full flex items-center justify-center border border-sky-500/30 transition">✕</button>
+            </div>
+            <div class="space-y-3 max-h-[300px] overflow-y-auto text-xs pr-1" id="chat-box">
+                <div class="bg-zinc-950/90 p-3 rounded-xl border border-sky-500/30 text-sky-200 shadow-inner">
+                    <span class="font-black block text-[10px] text-sky-400 mb-0.5">👑 DG Anders (Stockholm)</span>
+                    Salut ! Es-tu prêt à inclure ton 1er choix 2027 contre Sundin ?
+                </div>
+            </div>
+            <div class="flex gap-2 pt-3 border-t border-sky-500/30 bg-sky-950/20 -mx-5 -mb-5 p-4 rounded-b-2xl">
+                <input type="text" id="chat-input" placeholder="Écrivez votre message..." class="bg-zinc-950 border border-sky-500/40 rounded-xl px-3.5 py-2.5 text-xs w-full text-sky-100 outline-none focus:border-sky-400 transition">
+                <button onclick="envoyerMessage()" class="bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-black px-4 py-2.5 rounded-xl text-xs shadow-lg shrink-0">Envoyer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ALERTES (GRIS ARDOISE .NEON-CARD & ZONES HAUT/BAS SOIGNÉES) -->
+    <div id="modal-notifs" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="neon-card border border-purple-500/50 w-full max-w-md rounded-2xl p-4 sm:p-5 space-y-4 shadow-2xl">
+            <!-- Haut de modale soigné et rempli -->
+            <div class="flex justify-between items-center border-b border-purple-500/30 pb-3 bg-purple-500/10 -mx-5 -mt-5 p-4 rounded-t-2xl">
+                <div class="flex items-center gap-2.5">
+                    <span class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center text-sm font-black border border-purple-500/40"><i class="fa-solid fa-bell"></i></span>
+                    <div>
+                        <h3 class="font-black text-purple-200 text-sm tracking-wide">Centre d'Alertes Actives</h3>
+                        <p class="text-[10px] text-purple-300/80">Suivi en temps réel de vos tâches de DG</p>
+                    </div>
+                </div>
+                <button onclick="fermerModalNotifs()" class="text-purple-300 hover:text-white font-bold bg-zinc-900/80 w-7 h-7 rounded-full flex items-center justify-center border border-purple-500/30 transition">✕</button>
+            </div>
+
+            <!-- Liste des alertes -->
+            <div class="space-y-2.5 text-xs py-1" id="liste-alertes-container">
+                <div onclick="redirigerAlerte(this, 'transactions')" class="bg-zinc-950/90 hover:bg-slate-800/80 p-3 rounded-xl border border-sky-500/50 flex items-center justify-between cursor-pointer transition group shadow-md">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="text-xl shrink-0">🔄</span>
+                        <div class="min-w-0">
+                            <span class="font-bold text-sky-100 block truncate group-hover:text-sky-300">Offre de transaction reçue</span>
+                            <span class="text-[10px] text-sky-400 block truncate">Canadiens de Montréal (DG Hughes)</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0 ml-2">
+                        <span class="text-[10px] font-black bg-sky-500/20 text-sky-300 px-2 py-1 rounded-lg border border-sky-500/30 group-hover:bg-sky-500 group-hover:text-black">Voir ➔</span>
+                        <button onclick="supprimerAlerte(event, this.closest('.group'))" title="Marquer comme traitée" class="text-zinc-500 hover:text-rose-400 p-1 text-sm transition">✕</button>
+                    </div>
+                </div>
+
+                <div onclick="redirigerAlerte(this, 'direction')" class="bg-zinc-950/90 hover:bg-slate-800/80 p-3 rounded-xl border border-purple-500/50 flex items-center justify-between cursor-pointer transition group shadow-md">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="text-xl shrink-0">✍️</span>
+                        <div class="min-w-0">
+                            <span class="font-bold text-sky-100 block truncate group-hover:text-purple-300">Demande de prolongation de contrat</span>
+                            <span class="text-[10px] text-purple-400 block truncate">Alexis Lafrenière (RFA 2027)</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0 ml-2">
+                        <span class="text-[10px] font-black bg-purple-500/20 text-purple-300 px-2 py-1 rounded-lg border border-purple-500/30 group-hover:bg-purple-500 group-hover:text-white">Négocier ➔</span>
+                        <button onclick="supprimerAlerte(event, this.closest('.group'))" title="Marquer comme traitée" class="text-zinc-500 hover:text-rose-400 p-1 text-sm transition">✕</button>
+                    </div>
+                </div>
+
+                <div onclick="redirigerAlerte(this, 'boutique')" class="bg-zinc-950/90 hover:bg-slate-800/80 p-3 rounded-xl border border-emerald-500/50 flex items-center justify-between cursor-pointer transition group shadow-md">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="text-xl shrink-0">🎰</span>
+                        <div class="min-w-0">
+                            <span class="font-bold text-sky-100 block truncate group-hover:text-emerald-300">Boni Casino Quotidien prêt</span>
+                            <span class="text-[10px] text-emerald-400 block truncate">4,500 EP disponibles pour le Spin</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0 ml-2">
+                        <span class="text-[10px] font-black bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-lg border border-emerald-500/30 group-hover:bg-emerald-500 group-hover:text-black">Lancer ➔</span>
+                        <button onclick="supprimerAlerte(event, this.closest('.group'))" title="Marquer comme traitée" class="text-zinc-500 hover:text-rose-400 p-1 text-sm transition">✕</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bas de modale rempli et élégant -->
+            <div class="pt-3 border-t border-purple-500/30 bg-purple-950/20 -mx-5 -mb-5 p-3.5 rounded-b-2xl flex justify-between items-center text-[11px] text-purple-300/80">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-purple-400"></i> Cliquez pour traiter ou ✕ pour archiver</span>
+                <span class="font-mono bg-zinc-900 px-2.5 py-1 rounded-lg border border-purple-500/30 text-purple-300">LDC 2026</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let soldeEP = 4500;
+        let modeActuel = 'safe';
+
+        const joueursLocaux = [
+            { id: 'q1', nom: 'Jean Béliveau', pos: 'C', age: 31, off: 95, def: 88, gar: 0, moy: 92, patin: 92, tir: 95, passe: 98, physique: 88, mental: 97, poignet: 96, frappe: 92, echec: 85, maj: 94, potentiel: 'Élite (95)', salaire: 9500000, photo: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=100&auto=format&fit=crop&q=80' },
+            { id: 'q2', nom: 'Guy Lafleur', pos: 'AD', age: 28, off: 96, def: 78, gar: 0, moy: 87, patin: 97, tir: 96, passe: 93, physique: 82, mental: 94, poignet: 98, frappe: 95, echec: 78, maj: 80, potentiel: 'Superstar (96)', salaire: 8800000, photo: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80' },
+            { id: 'q3', nom: 'Serge Savard', pos: 'DD', age: 38, off: 82, def: 95, gar: 0, moy: 88, patin: 84, tir: 82, passe: 88, physique: 92, mental: 93, poignet: 80, frappe: 94, echec: 96, maj: 70, potentiel: 'Franchise (91)', salaire: 6800000, photo: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&auto=format&fit=crop&q=80' },
+            { id: 'q4', nom: 'Alexis Lafrenière', pos: 'AG', age: 20, off: 86, def: 75, gar: 0, moy: 81, patin: 88, tir: 85, passe: 84, physique: 80, mental: 82, poignet: 87, frappe: 84, echec: 81, maj: 76, potentiel: 'Futur Élite (92)', salaire: 2500000, photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80' }
+        ];
+
+        const choixLocaux = [
+            { id: 'qc1', nom: '1er Choix Repêchage 2027 (Québec)', salaire: 0 },
+            { id: 'qc2', nom: '2e Choix Repêchage 2027 (Québec)', salaire: 0 }
+        ];
+
+        const equipesAdverses = {
+            sto: {
+                nom: 'Viking de Stockholm',
+                masseAvant: 72100000,
+                joueurs: [
+                    { id: 's1', nom: 'Mats Sundin', pos: 'C', age: 32, off: 91, def: 89, gar: 0, moy: 90, patin: 88, tir: 91, passe: 93, physique: 93, mental: 95, potentiel: 'Élite (92)', salaire: 8000000, photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80' }
+                ],
+                choix: [{ id: 'sc1', nom: '1er Choix Stockholm 2027', salaire: 0 }]
+            },
+            mtl: {
+                nom: 'Canadiens de Montréal',
+                masseAvant: 75200000,
+                joueurs: [
+                    { id: 'm1', nom: 'Carey Price', pos: 'G', age: 35, off: 0, def: 0, gar: 95, moy: 95, patin: 86, tir: 50, passe: 70, physique: 88, mental: 96, potentiel: 'Légende (97)', salaire: 10500000, photo: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80' }
+                ],
+                choix: [{ id: 'mc1', nom: '1er Choix Montréal 2027', salaire: 0 }]
+            }
+        };
+
+        const agentsLibresList = [
+            { id: 'al1', nom: 'Jaromir Jagr', pos: 'AD', age: 42, moy: 85, demande: '2 ans / 5.5M $', stat: 'UFA' },
+            { id: 'al2', nom: 'Zdeno Chara', pos: 'DG', age: 41, moy: 84, demande: '1 an / 3.8M $', stat: 'UFA' },
+            { id: 'al3', nom: 'Henrik Lundqvist', pos: 'G', age: 38, moy: 87, demande: '2 ans / 4.5M $', stat: 'UFA' }
+        ];
+
+        let prospectsFerme = [
+            { id: 'p1', nom: 'Nathan Roy (C)', age: 19, moy: 76, xp: 45, potentiel: 'Élite (90)' },
+            { id: 'p2', nom: 'Samuel Bouchard (DD)', age: 20, moy: 78, xp: 70, potentiel: 'Top 4 (86)' }
+        ];
+
+        let negosContrats = [
+            { id: 'n1', nom: 'Alexis Lafrenière (AG)', fin: '2027 (RFA)', demande: '4 ans / 4.2M $ par an', statut: 'En attente' },
+            { id: 'n2', nom: 'Guy Lafleur (AD)', fin: '2028 (UFA)', demande: '6 ans / 8.5M $ par an', statut: 'Exige une hausse' }
+        ];
+
+        let selectionDonne = [];
+        let selectionRecu = [];
+
+        function initialiserConsole() {
+            afficherInventaires();
+            mettreAJourPlateau();
+            afficherFerme();
+            afficherNegos();
+            afficherAgentsLibres();
+            calculerCoteAlignement();
+            remplirHubCentral();
+        }
+
+        const tousLesJoueursLigue = [
+            { id: 'q1', nom: 'Jean Béliveau', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'C', moy: 92, patin: 92, tir: 95, passe: 98, physique: 88, poignet: 96, frappe: 92, echec: 85, lien: 'https://www.eliteprospects.com/player/jean-beliveau' },
+            { id: 'q2', nom: 'Guy Lafleur', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'AD', moy: 87, patin: 97, tir: 96, passe: 93, physique: 82, poignet: 98, frappe: 95, echec: 78, lien: 'https://www.eliteprospects.com/player/guy-lafleur' },
+            { id: 'q3', nom: 'Serge Savard', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'DD', moy: 88, patin: 84, tir: 82, passe: 88, physique: 92, poignet: 80, frappe: 94, echec: 96, lien: 'https://www.eliteprospects.com/player/serge-savard' },
+            { id: 'q4', nom: 'Alexis Lafrenière', equipe: 'Nordiques de Québec', equipeKey: 'quebec', pos: 'AG', moy: 81, patin: 88, tir: 85, passe: 84, physique: 80, poignet: 87, frappe: 84, echec: 81, lien: 'https://www.eliteprospects.com/player/alexis-lafreniere' },
+            { id: 's1', nom: 'Mats Sundin', equipe: 'Viking de Stockholm', equipeKey: 'stockholm', pos: 'C', moy: 90, patin: 88, tir: 91, passe: 93, physique: 93, poignet: 91, frappe: 89, echec: 90, lien: 'https://www.eliteprospects.com/player/mats-sundin' },
+            { id: 'm1', nom: 'Carey Price', equipe: 'Canadiens de Montréal', equipeKey: 'montreal', pos: 'G', moy: 95, patin: 86, tir: 50, passe: 70, physique: 88, poignet: 60, frappe: 60, echec: 70, lien: 'https://www.eliteprospects.com/player/carey-price' }
+        ];
+
+        function remplirHubCentral() {
+            filtrerHubCentral();
+        }
+
+        let modeEditionPresidentActif = false;
+
+        function basculerCadenasPresident() {
+            if (!modeEditionPresidentActif) {
+                const confirmation = confirm("🔒 SÉCURITÉ PRÉSIDENT : Voulez-vous vraiment ouvrir le cadenas et activer l'édition directe des attributs sur le Hub Central ?");
+                if (!confirmation) return;
+                modeEditionPresidentActif = true;
+                alert("🔓 Cadenas ouvert ! Vous pouvez maintenant modifier directement les attributs dans les cases du tableau.");
+            } else {
+                const confirmation = confirm("🔒 Voulez-vous verrouiller le cadenas et désactiver l'édition directe ?");
+                if (!confirmation) return;
+                modeEditionPresidentActif = false;
+                alert("🔒 Cadenas verrouillé.");
+            }
+            filtrerHubCentral();
+            mettreAJourBoutonCadenas();
+        }
+
+        function mettreAJourBoutonCadenas() {
+            const btn = document.getElementById('btn-cadenas-president');
+            if (!btn) return;
+            if (modeEditionPresidentActif) {
+                btn.className = "bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl border border-emerald-400 text-xs font-bold transition flex items-center gap-1.5 shadow-lg";
+                btn.innerHTML = `<i class="fa-solid fa-lock-open text-white"></i> Cadenas Ouvert (Mode Édition)`;
+            } else {
+                btn.className = "bg-zinc-900 hover:bg-purple-600 text-purple-300 hover:text-white px-3 py-1.5 rounded-xl border border-purple-500/40 text-xs font-bold transition flex items-center gap-1.5 shadow";
+                btn.innerHTML = `<i class="fa-solid fa-lock text-purple-400"></i> Cadenas Fermé (Sécurisé)`;
+            }
+        }
+
+        function filtrerHubCentral() {
+            const filtreEq = document.getElementById('hub-filtre-equipe').value;
+            const filtrePos = document.getElementById('hub-filtre-pos').value;
+
+            let html = '';
+            tousLesJoueursLigue.forEach(j => {
+                if (filtreEq !== 'tous' && j.equipeKey !== filtreEq) return;
+                if (filtrePos === 'C' && j.pos !== 'C') return;
+                if (filtrePos === 'ailiers' && j.pos !== 'AG' && j.pos !== 'AD') return;
+                if (filtrePos === 'D' && j.pos !== 'DD' && j.pos !== 'DG' && j.pos !== 'D') return;
+                if (filtrePos === 'G' && j.pos !== 'G') return;
+
+                const inputPatin = modeEditionPresidentActif ? `<input type="number" value="${j.patin}" onchange="modifierAttributDirect('${j.id}', 'patin', this.value)" class="w-12 bg-zinc-950 border border-emerald-500 text-center text-emerald-300 rounded font-bold text-xs py-0.5">` : j.patin;
+                const inputTir = modeEditionPresidentActif ? `<input type="number" value="${j.tir}" onchange="modifierAttributDirect('${j.id}', 'tir', this.value)" class="w-12 bg-zinc-950 border border-emerald-500 text-center text-emerald-300 rounded font-bold text-xs py-0.5">` : j.tir;
+                const inputPasse = modeEditionPresidentActif ? `<input type="number" value="${j.passe}" onchange="modifierAttributDirect('${j.id}', 'passe', this.value)" class="w-12 bg-zinc-950 border border-emerald-500 text-center text-emerald-300 rounded font-bold text-xs py-0.5">` : j.passe;
+                const inputPhysique = modeEditionPresidentActif ? `<input type="number" value="${j.physique}" onchange="modifierAttributDirect('${j.id}', 'physique', this.value)" class="w-12 bg-zinc-950 border border-emerald-500 text-center text-emerald-300 rounded font-bold text-xs py-0.5">` : j.physique;
+                const inputPoignet = modeEditionPresidentActif ? `<input type="number" value="${j.poignet}" onchange="modifierAttributDirect('${j.id}', 'poignet', this.value)" class="w-12 bg-zinc-950 border border-emerald-500 text-center text-emerald-300 rounded font-bold text-xs py-0.5">` : j.poignet;
+                const inputFrappe = modeEditionPresidentActif ? `<input type="number" value="${j.frappe}" onchange="modifierAttributDirect('${j.id}', 'frappe', this.value)" class="w-12 bg-zinc-950 border border-emerald-500 text-center text-emerald-300 rounded font-bold text-xs py-0.5">` : j.frappe;
+                const inputEchec = modeEditionPresidentActif ? `<input type="number" value="${j.echec}" onchange="modifierAttributDirect('${j.id}', 'echec', this.value)" class="w-12 bg-zinc-950 border border-emerald-500 text-center text-emerald-300 rounded font-bold text-xs py-0.5">` : j.echec;
+
+                html += `
+                    <tr class="hover:bg-zinc-950 transition">
+                        <td class="p-3">
+                            <span class="font-bold text-sky-100 block">${j.nom}</span>
+                            <span class="text-[10px] text-sky-400">${j.equipe}</span>
+                        </td>
+                        <td class="p-3 text-center"><span class="bg-black px-2 py-0.5 rounded text-sky-300 border border-zinc-800">${j.pos}</span></td>
+                        <td class="p-3 text-center"><span class="text-emerald-400 font-black" id="moy-${j.id}">${j.moy}</span></td>
+                        <td class="p-3 text-center text-zinc-300">${inputPatin}</td>
+                        <td class="p-3 text-center text-zinc-300">${inputTir}</td>
+                        <td class="p-3 text-center text-zinc-300">${inputPasse}</td>
+                        <td class="p-3 text-center text-zinc-300">${inputPhysique}</td>
+                        <td class="p-3 text-center text-purple-300">${inputPoignet}</td>
+                        <td class="p-3 text-center text-purple-300">${inputFrappe}</td>
+                        <td class="p-3 text-center text-purple-300">${inputEchec}</td>
+                        <td class="p-3">
+                            <input type="text" value="${j.lien}" onchange="modifierLienDG('${j.id}', this.value)" placeholder="Insérer lien (EP / Multi-pos)..." class="bg-zinc-950 border border-sky-500/40 text-sky-100 px-2.5 py-1.5 rounded-lg text-xs w-56 outline-none focus:border-sky-400">
+                        </td>
+                        <td class="p-3 text-center">
+                            <span class="text-[10px] text-zinc-500 italic">${modeEditionPresidentActif ? 'Mode Édition Directe' : 'Verrouillé'}</span>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            const tbody = document.getElementById('table-hub-corps');
+            if (tbody) tbody.innerHTML = html || '<tr><td colspan="12" class="p-4 text-center text-zinc-500 italic">Aucun joueur trouvé pour ces filtres.</td></tr>';
+            mettreAJourBoutonCadenas();
+        }
+
+        function modifierAttributDirect(id, attribut, nouvelleValeur) {
+            const joueur = tousLesJoueursLigue.find(j => j.id === id);
+            if (!joueur) return;
+
+            const confirmation = confirm(`🔒 SÉCURITÉ PRÉSIDENT : Voulez-vous vraiment modifier l'attribut [${attribut}] de ${joueur.nom} à ${nouvelleValeur} ?`);
+            if (!confirmation) {
+                filtrerHubCentral();
+                return;
+            }
+
+            joueur[attribut] = parseInt(nouvelleValeur) || 0;
+            const somme = joueur.patin + joueur.tir + joueur.passe + joueur.physique + joueur.poignet + joueur.frappe + joueur.echec;
+            joueur.moy = Math.round(somme / 7);
+
+            const badgeMoy = document.getElementById('moy-' + id);
+            if (badgeMoy) badgeMoy.innerText = joueur.moy;
+
+            alert(`✅ Attribut [${attribut}] mis à jour ! Nouvelle Note Globale (MOY) recalculée : ${joueur.moy}`);
+        }
+
+        function modifierLienDG(id, nouveauLien) {
+            const joueur = tousLesJoueursLigue.find(j => j.id === id);
+            if (joueur) {
+                joueur.lien = nouveauLien;
+                alert(`🔗 Lien mis à jour avec succès pour ${joueur.nom} !`);
+            }
+        }
+
+        function calculerCoteAlignement() {
+            const ag1 = document.getElementById('t1-ag').value;
+            const c1 = document.getElementById('t1-c').value;
+            const ad1 = document.getElementById('t1-ad').value;
+
+            let coteBase = 88.5;
+            if (ag1 === 'Alexis Lafrenière') coteBase += 1.0;
+            if (c1 === 'Jean Béliveau') coteBase += 2.5;
+            if (ad1 === 'Guy Lafleur') coteBase += 2.0;
+
+            const coteFinale = coteBase.toFixed(1);
+            
+            const elCote1 = document.getElementById('cote-globale-alignement');
+            const elCote2 = document.getElementById('avant-match-cote');
+            const badgeProb = document.getElementById('badge-probabilite-victoire');
+
+            if (elCote1) elCote1.innerText = coteFinale + " / 100";
+            if (elCote2) elCote2.innerText = coteFinale + " / 100";
+
+            let pourcentVictoire = Math.min(92, Math.floor(60 + (coteBase - 85) * 4));
+            if (badgeProb) badgeProb.innerText = `Victoire Probable (${pourcentVictoire}%)`;
+        }
+
+        function selectionnerModeGamble(mode) {
+            modeActuel = mode;
+            const btnSafe = document.getElementById('btn-mode-safe');
+            const btnRisque = document.getElementById('btn-mode-risque');
+            const labelMise = document.getElementById('label-mode-mise');
+
+            if (mode === 'safe') {
+                btnSafe.className = "w-1/2 py-2 rounded-lg text-xs font-black bg-emerald-600 text-white shadow";
+                btnRisque.className = "w-1/2 py-2 rounded-lg text-xs font-black bg-zinc-900 text-zinc-400 hover:text-white";
+                labelMise.innerText = "MISE: 50 CC";
+            } else {
+                btnRisque.className = "w-1/2 py-2 rounded-lg text-xs font-black bg-sky-600 text-white shadow animate-pulse";
+                btnSafe.className = "w-1/2 py-2 rounded-lg text-xs font-black bg-zinc-900 text-zinc-400 hover:text-white";
+                labelMise.innerText = "MISE: 200 CC";
+            }
+        }
+
+        function lancerRoueCasino() {
+            const cout = modeActuel === 'safe' ? 50 : 200;
+            if (soldeEP < cout) {
+                alert(`❌ Solde CC insuffisant ! Vous avez besoin de ${cout} CC pour ce mode.`);
+                return;
+            }
+            soldeEP -= cout;
+            mettreAJourSolde();
+
+            const roue = document.getElementById('roue-visuel-casino');
+            const statut = document.getElementById('roue-statut-casino');
+            statut.innerText = "SPIN 🌀";
+
+            const deg = Math.floor(2160 + Math.random() * 2160);
+            roue.style.transform = `rotate(${deg}deg)`;
+
+            const poolSafe = [
+                { title: "+100 CC GAIN SÉCURISÉ !", gainText: "+100 CC", gain: 100, piege: false },
+                { title: "+250 CC BONI LIGUE !", gainText: "+250 CC", gain: 250, piege: false },
+                { title: "+75 CC CONSERVATEUR !", gainText: "+75 CC", gain: 75, piege: false }
+            ];
+
+            const poolRisque = [
+                { title: "🔥 MEGA JACKPOT CASINO (+2,500 CC) !", gainText: "+2,500 CC", gain: 2500, piege: false },
+                { title: "💥 PIÈGE : MALÉDICTION DU STAFF (-150 CC) !", gainText: "-150 CC", gain: -150, piege: true },
+                { title: "💥 PIÈGE : TAXE GALACTIQUE (-500 CC) !", gainText: "-500 CC", gain: -500, piege: true },
+                { title: "🚀 TSAR DU CASINO (+1,000 CC) !", gainText: "+1,000 CC", gain: 1000, piege: false }
+            ];
+
+            const pool = modeActuel === 'safe' ? poolSafe : poolRisque;
+
+            setTimeout(() => {
+                const tirage = pool[Math.floor(Math.random() * pool.length)];
+                if (tirage.gain > 0) soldeEP += tirage.gain;
+                else if (tirage.gain < 0) soldeEP = Math.max(0, soldeEP + tirage.gain);
+
+                mettreAJourSolde();
+                statut.innerText = tirage.piege ? "PIÈGE 💥" : (tirage.gain > 0 ? `+${tirage.gain}` : "0 CC");
+            }, 5000);
+        }
+
+        function afficherAgentsLibres() {
+            let html = '';
+            agentsLibresList.forEach(a => {
+                html += `
+                    <div class="bg-black p-4 rounded-xl border border-zinc-900 space-y-3 shadow-xl">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-sky-100 text-xs block">${a.nom} (${a.pos})</span>
+                                <span class="text-[10px] text-sky-400">Statut : ${a.stat} • Âge : ${a.age}</span>
+                            </div>
+                            <span class="bg-emerald-500/20 text-emerald-300 px-2.5 py-1 rounded text-xs font-black">${a.moy} MOY</span>
+                        </div>
+                        <div class="text-xs text-sky-200 font-semibold">Exigence : <span class="text-sky-400">${a.demande}</span></div>
+                        <button onclick="signerAgentLibre('${a.nom}')" class="bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-black w-full py-2 rounded-xl text-xs shadow">✍️ Offrir un Contrat</button>
+                    </div>
+                `;
+            });
+            const container = document.getElementById('liste-agents-libres-complet');
+            if (container) container.innerHTML = html;
+        }
+
+        function signerAgentLibre(nom) { alert(`🎉 ${nom} rejoint l'organisation !`); }
+
+        function mettreAJourSolde() {
+            const el = document.getElementById('solde-ep-boutique');
+            if (el) el.innerText = soldeEP.toLocaleString() + " CC";
+        }
+
+        function tirerMiniJeu(zoneChoisie) {
+            const zones = ['gauche', 'centre', 'droite'];
+            const zoneGardien = zones[Math.floor(Math.random() * zones.length)];
+            const box = document.getElementById('resultat-minijeu-box');
+            box.classList.remove('hidden');
+
+            if (zoneChoisie !== zoneGardien) {
+                const gain = Math.floor(50 + Math.random() * 100);
+                soldeEP += gain;
+                mettreAJourSolde();
+                box.className = "bg-emerald-950/60 p-3 rounded-xl border border-emerald-500/50 text-xs font-bold text-emerald-300";
+                box.innerHTML = `GOOOAL ! 🚨 Le gardien a plongé du mauvais côté. Vous remportez <strong>+${gain} Crédits Cyber (CC)</strong> !`;
+            } else {
+                box.className = "bg-rose-950/60 p-3 rounded-xl border border-rose-500/50 text-xs font-bold text-rose-300";
+                box.innerHTML = `ARRÊT CLÉ ! 🛑 Le gardien a anticipé votre tir. Retentez votre chance !`;
+            }
+        }
+
+        function acheterCosmetique(prix, nomItem, description, type = 'theme') {
+            if (soldeEP < prix) {
+                alert("❌ Crédits Cyber (CC) insuffisants ! Jouez au mini-jeu de tirs pour en gagner.");
+                return;
+            }
+            soldeEP -= prix;
+            mettreAJourSolde();
+
+            if (type === 'theme') {
+                document.getElementById('nom-theme-actuel').innerText = nomItem;
+            } else if (type === 'mascotte') {
+                document.getElementById('texte-mascotte-actif').innerText = nomItem;
+                document.getElementById('deco-mascotte-visuel').innerText = "🐕";
+            } else if (type === 'trophee') {
+                document.getElementById('texte-trophee-actif').innerText = nomItem;
+                document.getElementById('deco-trophee-visuel').innerText = "🌟";
+            }
+
+            alert(`✨ Achat réussi : ${nomItem} ajouté à votre bureau de DG !`);
+        }
+
+        function simulerActionLive() {
+            const actions = [
+                "🔥 Tir dangereux de Guy Lafleur capté de justesse !",
+                "💪 Superbe mise en échec de Serge Savard !",
+                "⚡ Pénalité appelée contre Stockholm !",
+                "🏒 Arrêt clé sur un tir de Mats Sundin !"
+            ];
+            const act = actions[Math.floor(Math.random() * actions.length)];
+            alert("Séquence simulée : " + act);
+        }
+
+        function changerPartenaire() {
+            selectionRecu = [];
+            afficherInventaires();
+            mettreAJourPlateau();
+        }
+
+        function afficherInventaires() {
+            const cleAdverse = document.getElementById('partenaire-change').value;
+            const adverse = equipesAdverses[cleAdverse];
+
+            document.getElementById('titre-col-adverse').innerHTML = `<i class="fa-solid fa-user-shield mr-1"></i> Joueurs ${adverse.nom}`;
+            document.getElementById('nom-equipe-adverse-tbl').innerText = adverse.nom;
+            document.getElementById('masse-avant-adverse-val').innerText = adverse.masseAvant.toLocaleString() + " $";
+
+            let htmlLocal = '';
+            joueursLocaux.forEach(item => {
+                if (!selectionDonne.some(s => s.item.id === item.id)) htmlLocal += creerItemCarte(item, 'donne');
+            });
+            document.getElementById('inventaire-local-joueurs').innerHTML = htmlLocal || '<p class="text-xs text-zinc-500 text-center py-4">Tous vos joueurs sont sur le plateau.</p>';
+
+            let optLocal = '<option value="">-- Sélectionner un choix --</option>';
+            choixLocaux.forEach(c => {
+                if (!selectionDonne.some(s => s.item.id === c.id)) optLocal += `<option value="${c.id}">${c.nom}</option>`;
+            });
+            document.getElementById('select-choix-local').innerHTML = optLocal;
+
+            let htmlAdverse = '';
+            adverse.joueurs.forEach(item => {
+                if (!selectionRecu.some(s => s.item.id === item.id)) htmlAdverse += creerItemCarte(item, 'recu');
+            });
+            document.getElementById('inventaire-adverse-joueurs').innerHTML = htmlAdverse || '<p class="text-xs text-zinc-500 text-center py-4">Tous les joueurs adverses sont sur le plateau.</p>';
+
+            let optAdverse = '<option value="">-- Sélectionner un choix --</option>';
+            adverse.choix.forEach(c => {
+                if (!selectionRecu.some(s => s.item.id === c.id)) optAdverse += `<option value="${c.id}">${c.nom}</option>`;
+            });
+            document.getElementById('select-choix-adverse').innerHTML = optAdverse;
+        }
+
+        function creerItemCarte(item, direction) {
+            const onclickAction = direction === 'donne' ? `ajouterAuPlateau('donne', '${item.id}')` : `ajouterAuPlateau('recu', '${item.id}')`;
+            const note = item.moy > 0 ? item.moy : item.gar;
+            return `
+                <div class="carte-joueur-bg rounded-xl border hover:border-white p-3 cursor-pointer transition space-y-2.5 shadow-md" onclick="${onclickAction}">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="avatar-glow-pale"><img src="${item.photo}" class="w-10 h-10 rounded-full object-cover shadow"></div>
+                            <div>
+                                <span class="font-bold text-sky-100 text-xs block">${item.nom} (${item.pos})</span>
+                                <span class="text-[9px] font-black text-sky-400">${item.potentiel || 'Pro'}</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="bg-black px-2.5 py-0.5 rounded text-emerald-400 font-black text-xs border border-emerald-500/30">${note} MOY</span>
+                            <span class="text-sky-400 font-extrabold text-xs block mt-0.5">${(item.salaire/1000000).toFixed(2)}M $</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function ajouterAuPlateau(direction, id) {
+            if (direction === 'donne') {
+                const item = joueursLocaux.find(i => i.id === id);
+                if (item) selectionDonne.push({ item });
+            } else {
+                const cle = document.getElementById('partenaire-change').value;
+                const item = equipesAdverses[cle].joueurs.find(i => i.id === id);
+                if (item) selectionRecu.push({ item });
+            }
+            afficherInventaires();
+            mettreAJourPlateau();
+        }
+
+        function ajouterChoixMenu(direction) {
+            if (direction === 'donne') {
+                const sel = document.getElementById('select-choix-local');
+                const id = sel.value;
+                if (!id) return;
+                const item = choixLocaux.find(c => c.id === id);
+                if (item) selectionDonne.push({ item });
+            } else {
+                const cle = document.getElementById('partenaire-change').value;
+                const sel = document.getElementById('select-choix-adverse');
+                const id = sel.value;
+                if (!id) return;
+                const item = equipesAdverses[cle].choix.find(c => c.id === id);
+                if (item) selectionRecu.push({ item });
+            }
+            afficherInventaires();
+            mettreAJourPlateau();
+        }
+
+        function retirerDuPlateau(direction, id) {
+            if (direction === 'donne') selectionDonne = selectionDonne.filter(s => s.item.id !== id);
+            else selectionRecu = selectionRecu.filter(s => s.item.id !== id);
+            afficherInventaires();
+            mettreAJourPlateau();
+        }
+
+        function viderPlateau() {
+            selectionDonne = [];
+            selectionRecu = [];
+            afficherInventaires();
+            mettreAJourPlateau();
+        }
+
+        function mettreAJourPlateau() {
+            let htmlDonne = '';
+            let totalSalDonne = 0;
+            selectionDonne.forEach(s => {
+                totalSalDonne += (s.item.salaire || 0);
+                htmlDonne += `<div class="bg-zinc-950 p-2.5 rounded-xl border border-sky-500/60 text-xs flex justify-between items-center text-sky-100"><span>${s.item.nom}</span><button onclick="retirerDuPlateau('donne', '${s.item.id}')" class="text-rose-400 font-bold">×</button></div>`;
+            });
+            document.getElementById('plateau-donne').innerHTML = htmlDonne || '<span class="text-[11px] text-sky-300/70 italic block text-center py-8">Glissez des actifs ici</span>';
+
+            let htmlRecu = '';
+            let totalSalRecu = 0;
+            selectionRecu.forEach(s => {
+                totalSalRecu += (s.item.salaire || 0);
+                htmlRecu += `<div class="bg-zinc-950 p-2.5 rounded-xl border border-purple-500/60 text-xs flex justify-between items-center text-sky-100"><span>${s.item.nom}</span><button onclick="retirerDuPlateau('recu', '${s.item.id}')" class="text-rose-400 font-bold">×</button></div>`;
+            });
+            document.getElementById('plateau-recu').innerHTML = htmlRecu || '<span class="text-[11px] text-purple-300/70 italic block text-center py-8">Glissez des actifs ici</span>';
+
+            const masseApres = 74500000 - totalSalDonne + totalSalRecu;
+            document.getElementById('masse-apres-local').innerText = masseApres.toLocaleString() + " $";
+        }
+
+        function soumettreOffre() { alert("🚀 Transaction soumise avec succès !"); }
+
+        function afficherFerme() {
+            let html = '';
+            prospectsFerme.forEach(p => {
+                html += `
+                    <div class="bg-black p-4 rounded-xl border border-emerald-500/30 space-y-3 shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div><span class="font-bold text-sky-100 text-xs">${p.nom}</span><span class="text-[10px] text-emerald-400 block">Potentiel : ${p.potentiel}</span></div>
+                            <span class="bg-emerald-500/20 text-emerald-300 px-2.5 py-1 rounded text-xs font-black">${p.moy} MOY</span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-[10px] text-zinc-400"><span>Progression XP</span><span>${p.xp}%</span></div>
+                            <div class="w-full bg-zinc-950 h-2 rounded-full overflow-hidden border border-zinc-900"><div class="bg-emerald-500 h-full" style="width: ${p.xp}%"></div></div>
+                        </div>
+                    </div>
+                `;
+            });
+            const b = document.getElementById('liste-prospects-ferme');
+            if (b) b.innerHTML = html;
+        }
+
+        function simulerXPois() {
+            prospectsFerme.forEach(p => {
+                p.xp += 15;
+                if (p.xp >= 100) { p.xp = 0; p.moy += 1; alert(`🎉 ${p.nom} a progressé et atteint ${p.moy} MOY !`); }
+            });
+            afficherFerme();
+        }
+
+        function afficherNegos() {
+            let html = '';
+            negosContrats.forEach(n => {
+                html += `
+                    <div class="bg-black p-4 rounded-xl border border-sky-500/30 flex flex-wrap justify-between items-center gap-4 text-xs">
+                        <div>
+                            <span class="font-bold text-sky-100 block text-sm">${n.nom}</span>
+                            <span class="text-zinc-400">Échéance : ${n.fin} • Demande : <strong class="text-sky-400">${n.demande}</strong></span>
+                        </div>
+                        <button onclick="signerContrat('${n.id}')" class="bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-black px-4 py-2 rounded-xl text-xs shadow">✍️ Signer le Contrat</button>
+                    </div>
+                `;
+            });
+            const container = document.getElementById('liste-negos-contrats');
+            if (container) container.innerHTML = html;
+        }
+
+        function signerContrat(id) {
+            alert("✍️ Prolongation de contrat signée avec succès !");
+            negosContrats = negosContrats.filter(n => n.id !== id);
+            afficherNegos();
+        }
+
+        function choisirTactique(type) {
+            ['pression', 'trappe', 'physique'].forEach(t => {
+                const el = document.getElementById('tac-' + t);
+                if(el) el.className = "bg-black p-4 rounded-2xl border border-zinc-900 cursor-pointer space-y-2 shadow-lg transition";
+            });
+            const elType = document.getElementById('tac-' + type);
+            if(elType) elType.className = "bg-black p-4 rounded-2xl border-2 border-sky-500 cursor-pointer space-y-2 shadow-lg transition";
+            alert("♟️ Système tactique mis à jour avec succès !");
+        }
+
+        function changerOnglet(onglet) {
+            ['hub', 'transactions', 'vestiaire', 'strategie', 'direction', 'matchs', 'boutique', 'presse', 'stats', 'arena', 'loterie', 'staff', 'rumeurs'].forEach(o => {
+                const p = document.getElementById('page-' + o);
+                const b = document.getElementById('btn-' + o);
+                if (p) p.classList.add('hidden');
+                if (b) {
+                    b.className = "bg-zinc-950 hover:bg-zinc-900 text-sky-200 border border-zinc-900 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow";
+                }
+            });
+            
+            const targetPage = document.getElementById('page-' + onglet);
+            const targetBtn = document.getElementById('btn-' + onglet);
+            if (targetPage) targetPage.classList.remove('hidden');
+            if (targetBtn) targetBtn.className = "active-module px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow";
+            
+            if (onglet === 'boutique') {
+                changerSousOngletCasino('minijeu');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function redirigerAlerte(element, nomOnglet) {
+            fermerModalNotifs();
+            changerOnglet(nomOnglet);
+            if (element) {
+                element.remove();
+                mettreAJourCompteurAlertes();
+            }
+        }
+
+        function supprimerAlerte(event, element) {
+            event.stopPropagation();
+            if (element) {
+                element.remove();
+                mettreAJourCompteurAlertes();
+            }
+        }
+
+        function mettreAJourCompteurAlertes() {
+            const container = document.getElementById('liste-alertes-container');
+            const badge = document.getElementById('badge-alertes-count');
+            if (!container || !badge) return;
+            const count = container.children.length;
+            badge.innerText = count;
+            if (count === 0) {
+                badge.classList.add('hidden');
+                container.innerHTML = '<p class="text-xs text-zinc-500 text-center py-6 italic">Aucune alerte en attente. Vous êtes à jour ! 👍</p>';
+            }
+        }
+
+        function ouvrirModalChat() { document.getElementById('modal-chat').classList.remove('hidden'); }
+        function fermerModalChat() { document.getElementById('modal-chat').classList.add('hidden'); }
+        function ouvrirModalNotifs() { document.getElementById('modal-notifs').classList.remove('hidden'); }
+        function fermerModalNotifs() { document.getElementById('modal-notifs').classList.add('hidden'); }
+
+        function envoyerMessage() {
+            const input = document.getElementById('chat-input');
+            const txt = input.value.trim();
+            if (!txt) return;
+            const box = document.getElementById('chat-box');
+            box.innerHTML += `<div class="bg-zinc-900 p-2.5 rounded-xl border border-sky-500/40 text-sky-200 text-right ml-8"><span class="font-black block text-[10px] text-sky-400">Vous</span>${txt}</div>`;
+            input.value = '';
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function lancerLoterieDraft() {
+            const nomEquipes = [
+                "Nordiques de Québec (18.5% de chances)",
+                "Viking de Stockholm (13.5% de chances)",
+                "Canadiens de Montréal (9.5% de chances)",
+                "Boston Bruins (8.0% de chances)"
+            ];
+            const gagnant = nomEquipes[Math.floor(Math.random() * nomEquipes.length)];
+            document.getElementById('loto-gagnant-nom').innerText = gagnant;
+            document.getElementById('loto-gagnant-desc').innerText = "🎉 Tirage complété avec succès ! Le premier choix au total pour le repêchage 2027 est attribué.";
+            alert(`🎉 Le tirage au sort est complété ! ${gagnant} remporte le 1er choix au total !`);
+        }
+
+        function embaucherStaff(nom) {
+            alert(`🎉 Vous avez embauché ${nom} avec succès ! Son bonus passif est désormais actif dans l'organisation.`);
+        }
+
+        function changerPrixBillet(val) {
+            document.getElementById('prix-billet-val').innerText = val + " $";
+            const taux = val > 75 ? "74% (Baisse d'achalandage)" : (val > 55 ? "89% (Remplissage normal)" : "98% (Guichets fermés)");
+            document.getElementById('taux-remplissage').innerText = taux;
+        }
+
+        function ameliorerLoges() {
+            if (soldeEP < 1500) {
+                alert("❌ Fonds insuffisants pour rénover les loges !");
+                return;
+            }
+            soldeEP -= 500;
+            mettreAJourSolde();
+            alert("✨ Rénovations des loges VIP complétées ! Vos revenus d'exploitation augmentent de 15%.");
+        }
+
+        function changerSousOngletCasino(sub) {
+            ['minijeu', 'roulette', 'boutique'].forEach(s => {
+                const el = document.getElementById('subpage-' + s);
+                const btn = document.getElementById('btn-sub-' + s);
+                if (el) el.classList.add('hidden');
+                if (btn) btn.className = "flex-1 min-w-[140px] py-2.5 px-4 rounded-xl text-xs font-black bg-zinc-950 text-zinc-400 hover:text-white transition flex items-center justify-center gap-2";
+            });
+            const targetEl = document.getElementById('subpage-' + sub);
+            const targetBtn = document.getElementById('btn-sub-' + sub);
+            if (targetEl) targetEl.classList.remove('hidden');
+            if (targetBtn) targetBtn.className = "flex-1 min-w-[140px] py-2.5 px-4 rounded-xl text-xs font-black bg-sky-600 text-white shadow-lg transition flex items-center justify-center gap-2";
+        }
+
+        window.onload = () => { 
+            initialiserConsole(); 
+            changerOnglet('hub');
+        };
+
+</script>
+</body>
+</html>
